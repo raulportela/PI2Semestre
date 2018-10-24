@@ -85,6 +85,7 @@ public class DaoVenda {
             preparedStatement.setInt(1, Integer.parseInt(itemVenda.getProduto().getQuantidade()));
             System.out.println("2");
             preparedStatement.setInt(2, chaveVenda);
+            System.out.println("Chave da venda: " + chaveVenda);
             System.out.println("3");
             preparedStatement.setInt(3, itemVenda.getProduto().getIdProduto());
             System.out.println("4");
