@@ -1,0 +1,70 @@
+CREATE DATABASE Floricultura;
+USE Floricultura;
+
+CREATE TABLE Cliente(
+Id INT NOT NULL AUTO_INCREMENT,
+StatusCliente BOOLEAN NOT NULL,
+Nome VARCHAR (30) NOT NULL,
+Sobrenome VARCHAR (30) NOT NULL,
+RG VARCHAR (20) UNIQUE,
+CPF CHAR (11) UNIQUE NOT NULL,
+DataNascimento VARCHAR(10) NOT NULL,
+Sexo Varchar(9)NOT NULL,
+UfNascimento CHAR (2),
+EstadoNascimento VARCHAR (19),
+EstadoCivil VARCHAR(100),
+Rua VARCHAR (30) NOT NULL,
+Numero VARCHAR (5) NOT NULL ,
+Bairro VARCHAR (30) NOT NULL,
+Cep VARCHAR (9) NOT NULL,
+Complemento VARCHAR (50),
+Uf CHAR (2) NOT NULL,
+Estado VARCHAR (20) NOT NULL,
+Telefone VARCHAR (10),
+Celular VARCHAR (11),
+OutroContato VARCHAR (20),
+Email VARCHAR (40),
+PRIMARY KEY (Id)
+);
+
+CREATE TABLE Produto (
+Id INT AUTO_INCREMENT,
+StatusProduto BOOLEAN NOT NULL,
+Produto VARCHAR (30) NOT NULL,
+Categoria varchar(15),
+Descricao TEXT NOT NULL,
+Cor VARCHAR (8),
+ValorUnitario VARCHAR (8) NOT NULL,
+Quantidade INT (4) NOT NULL,
+PRIMARY KEY (Id)
+);
+
+INSERT INTO PRODUTO VALUES (DEFAULT, 1, '', 'FLORES', 'FLOR LINDA', 'AMARELO', 10,50);
+
+CREATE TABLE Venda (
+Id INT AUTO_INCREMENT,
+NotaFiscal CHAR (10) NOT NULL,
+DataVenda DATE,
+ValorTotal FLOAT (8,2),
+IdCliente INT (6),
+PRIMARY KEY (Id),
+FOREIGN KEY (IdCliente) REFERENCES Cliente (Id)
+);
+
+CREATE TABLE ItemVenda(
+
+Quantidade INT NOT NULL,
+IdVenda INT NOT NULL,
+IdProduto INT NOT NULL,
+FOREIGN KEY (IdVenda) REFERENCES Venda(Id),
+FOREIGN KEY (IdProduto) REFERENCES Produto(Id)
+);
+
+SELECT * FROM produto;
+-- CRIAR TABELA DE ITENS DE VENDA. VIDE MODELO RELACIONAL
+-- SHOW TABLES;
+DESCRIBE venda;
+
+-- drop database floricultura;
+
+
