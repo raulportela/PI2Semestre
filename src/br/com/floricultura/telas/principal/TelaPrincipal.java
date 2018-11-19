@@ -7,10 +7,6 @@ package br.com.floricultura.telas.principal;
 
 import br.com.floricultura.telas.cliente.IncluirCliente;
 import br.com.floricultura.telas.cliente.PesquisarCliente;
-import br.com.floricultura.telas.produto.CadastrarProduto;
-import br.com.floricultura.telas.produto.TelaPesquisar;
-import br.com.floricultura.telas.relatorio.PesquisaRelatorio;
-import br.com.floricultura.telas.vendas.TelaVenda;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
