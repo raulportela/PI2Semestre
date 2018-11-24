@@ -7,7 +7,6 @@ package br.com.floricultura.telas.cliente;
 
 import br.com.floricultura.model.cliente.Cliente;
 import br.com.floricultura.servico.ServicoCliente;
-import br.com.floricultura.telas.vendas.TelaVenda;
 import java.awt.Color;
 import java.util.List;
 import java.util.logging.Level;

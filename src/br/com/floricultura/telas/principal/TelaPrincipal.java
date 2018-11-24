@@ -26,16 +26,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private IncluirCliente cadastroCliente = null;
     private PesquisarCliente telaPesquisarCliente = null;
     
-            //TELA PRODUTO
-    private CadastrarProduto cadastroProduto = null;  
-    private TelaPesquisar telaPesquisarProduto = null;
-    
-            //TELA RELATORIO
-    private PesquisaRelatorio telaRelatorio = null;
-    
-            //TELA VENDA
-    private TelaVenda telaVenda = null;
-    
     /**
      * Creates new form principal
      */
@@ -85,13 +75,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menuCliente = new javax.swing.JMenu();
         menuCadastrarCliente = new javax.swing.JMenuItem();
         menuConsultarCliente = new javax.swing.JMenuItem();
-        menuCliente1 = new javax.swing.JMenu();
-        menuCadastrarCliente1 = new javax.swing.JMenuItem();
-        menuConsultarCliente1 = new javax.swing.JMenuItem();
-        menuCliente2 = new javax.swing.JMenu();
-        menuCadastrarCliente2 = new javax.swing.JMenuItem();
-        menuCliente3 = new javax.swing.JMenu();
-        menuCadastrarCliente3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Floricultura");
@@ -119,50 +102,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menuCliente.add(menuConsultarCliente);
 
         barraMenus.add(menuCliente);
-
-        menuCliente1.setText("Produto");
-
-        menuCadastrarCliente1.setText("Cadastrar Produto");
-        menuCadastrarCliente1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuCadastrarCliente1ActionPerformed(evt);
-            }
-        });
-        menuCliente1.add(menuCadastrarCliente1);
-
-        menuConsultarCliente1.setText("Consultar Produto");
-        menuConsultarCliente1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuConsultarCliente1ActionPerformed(evt);
-            }
-        });
-        menuCliente1.add(menuConsultarCliente1);
-
-        barraMenus.add(menuCliente1);
-
-        menuCliente2.setText("Venda");
-
-        menuCadastrarCliente2.setText("Venda Produto");
-        menuCadastrarCliente2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuCadastrarCliente2ActionPerformed(evt);
-            }
-        });
-        menuCliente2.add(menuCadastrarCliente2);
-
-        barraMenus.add(menuCliente2);
-
-        menuCliente3.setText("Relatorio");
-
-        menuCadastrarCliente3.setText("Relatorio ");
-        menuCadastrarCliente3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuCadastrarCliente3ActionPerformed(evt);
-            }
-        });
-        menuCliente3.add(menuCadastrarCliente3);
-
-        barraMenus.add(menuCliente3);
 
         setJMenuBar(barraMenus);
 
@@ -206,51 +145,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         telaPesquisarCliente.toFront ();
              
     }//GEN-LAST:event_menuConsultarClienteActionPerformed
-
-    private void menuCadastrarCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadastrarCliente1ActionPerformed
-        // TELA DE CADASTRAR  PRODUTO "CadastrProduto"
-        if(getCadastroProduto() == null || !cadastroProduto.isDisplayable()){
-            cadastroProduto = new CadastrarProduto ();
-            desktopPane.add(getCadastroProduto());
-            this.openFrameInCenter (getCadastroProduto());
-        }
-        getCadastroProduto().toFront();
-    }//GEN-LAST:event_menuCadastrarCliente1ActionPerformed
-
-    private void menuConsultarCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultarCliente1ActionPerformed
-        //TELA PARA CONSULTAR PRODUTO
-        if(telaPesquisarProduto == null || !telaPesquisarProduto.isDisplayable()){
-            try {
-                telaPesquisarProduto = new TelaPesquisar();
-            } catch (Exception ex) {
-                Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            desktopPane.add(telaPesquisarProduto);
-            this.openFrameInCenter(telaPesquisarProduto);
-        }
-        telaPesquisarProduto.toFront();
-    }//GEN-LAST:event_menuConsultarCliente1ActionPerformed
-
-    private void menuCadastrarCliente2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadastrarCliente2ActionPerformed
-        //TELA DE VENDAS DE PRODUTO
-        if(telaVenda == null || !telaVenda.isDisplayable()){
-            telaVenda = new TelaVenda ();
-            desktopPane.add (telaVenda);
-            this.openFrameInCenter(telaVenda);
-        }
-        telaVenda.toFront();
-    }//GEN-LAST:event_menuCadastrarCliente2ActionPerformed
-
-    private void menuCadastrarCliente3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadastrarCliente3ActionPerformed
-        // TELA DE RELATORIO
-        if(telaRelatorio == null || !telaRelatorio.isDisplayable()){
-            telaRelatorio = new PesquisaRelatorio();
-            desktopPane.add(telaRelatorio);
-            this.openFrameInCenter (telaRelatorio);
-            
-        }
-        telaRelatorio.toFront();
-    }//GEN-LAST:event_menuCadastrarCliente3ActionPerformed
 
     public void openFrameInCenter(JInternalFrame jif) {
 
@@ -308,23 +202,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar barraMenus;
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenuItem menuCadastrarCliente;
-    private javax.swing.JMenuItem menuCadastrarCliente1;
-    private javax.swing.JMenuItem menuCadastrarCliente2;
-    private javax.swing.JMenuItem menuCadastrarCliente3;
     private javax.swing.JMenu menuCliente;
-    private javax.swing.JMenu menuCliente1;
-    private javax.swing.JMenu menuCliente2;
-    private javax.swing.JMenu menuCliente3;
     private javax.swing.JMenuItem menuConsultarCliente;
-    private javax.swing.JMenuItem menuConsultarCliente1;
     // End of variables declaration//GEN-END:variables
 
     /**
      * @return the cadastroProduto
      */
-    public CadastrarProduto getCadastroProduto() {
-        return cadastroProduto;
-    }
+    
 
     
 
