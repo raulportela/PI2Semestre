@@ -5,7 +5,7 @@
  */
 package br.com.floricultura.telas.cliente;
 
-import br.com.floricultura.model.cliente.Cliente;
+import br.com.floricultura.model.pessoa.Cliente;
 import br.com.floricultura.servico.ServicoCliente;
 import java.awt.Color;
 import java.util.logging.Level;
