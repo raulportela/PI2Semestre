@@ -6,7 +6,7 @@
 package br.com.floricultura.servico;
 
 import br.com.floricultura.db.dao.DaoCliente;
-import br.com.floricultura.model.pessoa.Cliente;
+import br.com.floricultura.model.pessoa.cliente.Cliente;
 import br.com.floricultura.model.validador.ValidadorCliente;
 import java.awt.HeadlessException;
 import java.util.ArrayList;

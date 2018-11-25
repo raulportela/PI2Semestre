@@ -5,7 +5,7 @@
  */
 package br.com.floricultura.model.validador;
 
-import br.com.floricultura.model.pessoa.Cliente;
+import br.com.floricultura.model.pessoa.cliente.Cliente;
 
 /**
  *
