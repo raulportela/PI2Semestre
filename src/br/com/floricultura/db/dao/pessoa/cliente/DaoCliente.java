@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.floricultura.db.dao;
+package br.com.floricultura.db.dao.pessoa.cliente;
 
 import br.com.floricultura.db.utils.ConnectionUtils;
+import br.com.floricultura.interfaces.CRUD;
 import br.com.floricultura.model.pessoa.cliente.Cliente;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,7 +19,7 @@ import java.util.List;
  *
  * @author Raul de Paula
  */
-public class DaoCliente {
+public class DaoCliente implements CRUD {
 
     public static void inserir(Cliente cliente) throws SQLException, Exception {
         String sql = "INSERT INTO cliente VALUES (0, ?, ?, ?, ?, ?, ?, ?, "
@@ -210,7 +211,7 @@ public class DaoCliente {
     
     }
 
-    public static List<Cliente> listar()
+    public static List<Cliente> TIRARESSElistar()
             throws SQLException, Exception {
         String sql = "SELECT * FROM cliente WHERE (StatusCliente=?)";
         List<Cliente> listaClientes = null;
@@ -266,5 +267,30 @@ public class DaoCliente {
             }
         }
         return listaClientes;
+    }
+
+    @Override
+    public String inserir() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String excluir() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String obterUm() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String listarPorStatus() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Object> listar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

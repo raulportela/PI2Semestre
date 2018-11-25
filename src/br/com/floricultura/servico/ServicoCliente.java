@@ -5,7 +5,7 @@
  */
 package br.com.floricultura.servico;
 
-import br.com.floricultura.db.dao.DaoCliente;
+import br.com.floricultura.db.dao.pessoa.cliente.DaoCliente;
 import br.com.floricultura.interfaces.CRUD;
 import br.com.floricultura.model.pessoa.cliente.Cliente;
 import br.com.floricultura.model.validador.ValidadorCliente;

@@ -16,7 +16,7 @@ import java.util.Date;
         protected String nome;
         protected String sobrenome;
         protected String cpf;
-        protected Date dataNascimento;
+        protected String dataNascimento;
 
         public String getNome() {
             return nome;
@@ -30,7 +30,7 @@ import java.util.Date;
             return cpf;
         }
 
-        public Date getDataNascimento() {
+        public String getDataNascimento() {
             return dataNascimento;
         }
 

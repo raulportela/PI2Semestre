@@ -3,70 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.floricultura.telas.cliente;
-
-import br.com.floricultura.model.pessoa.cliente.Cliente;
-import br.com.floricultura.servico.ServicoCliente;
-import java.awt.Color;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-import javax.swing.border.LineBorder;
-import javax.swing.table.DefaultTableModel;
+package br.com.floricultura.telas.funcionario;
 
 /**
  *
- * @author raul.pportela
+ * @author Raul de Paula
  */
-public class PesquisarCliente extends javax.swing.JInternalFrame {
+public class PesquisarFuncionario extends javax.swing.JInternalFrame {
 
-    IncluirCliente incluirCliente = new IncluirCliente();
-
-    public PesquisarCliente() throws Exception {
+    /**
+     * Creates new form PesquisarCliente
+     */
+    public PesquisarFuncionario() {
         initComponents();
-        popularTabela(null);
-    }
-
-    private void popularTabela(String cpf) throws Exception {
-
-        List<Cliente> listaClientes = null;
-        try {
-            listaClientes = ServicoCliente.listar();
-        } catch (Exception ex) {
-            Logger.getLogger(PesquisarCliente.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        Cliente clienteC;
-        DefaultTableModel dtmClientes = (DefaultTableModel) jTableClientesCadsatrados.getModel();
-        Object[] dados = new Object[6];
-        dtmClientes.setRowCount(0);
-        if (cpf != null && !cpf.equals("")) {
-            dtmClientes.setRowCount(0);
-            clienteC = ServicoCliente.procurarCliente(cpf);
-            dados[0] = clienteC.getIdCliente();
-            dados[1] = clienteC.getNome() + " " + clienteC.getSobrenome();
-            dados[2] = clienteC.getCpf();
-            dados[3] = clienteC.getRua() + ", " + clienteC.getNumero() + " - "
-                    + clienteC.getBairro() + " - " + clienteC.getUf() + " - " + clienteC.getEstado();
-            dados[4] = clienteC.getTelefone() + " - " + clienteC.getCelular();
-            dados[5] = clienteC.getEmail();
-            dtmClientes.addRow(dados);
-        } else {
-            dtmClientes.setRowCount(0);
-            int contadorPosicao = 0;
-            while (listaClientes != null && contadorPosicao < listaClientes.size()) {
-                clienteC = listaClientes.get(contadorPosicao);
-                dados[0] = clienteC.getIdCliente();
-                dados[1] = clienteC.getNome() + " " + clienteC.getSobrenome();
-                dados[2] = clienteC.getCpf();
-                dados[3] = clienteC.getRua() + ", " + clienteC.getNumero() + " - "
-                        + clienteC.getBairro() + " - " + clienteC.getUf() + " - " + clienteC.getEstado();
-                dados[4] = clienteC.getTelefone() + " - " + clienteC.getCelular();
-                dados[5] = clienteC.getEmail();
-                dtmClientes.addRow(dados);
-                contadorPosicao++;
-            }
-        }
     }
 
     /**
@@ -92,9 +41,6 @@ public class PesquisarCliente extends javax.swing.JInternalFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
         buttonPesquisa1 = new javax.swing.JToggleButton();
 
-        setClosable(true);
-        setTitle("Cliente");
-
         jPanel1.setBackground(new java.awt.Color(240, 240, 255));
 
         jTableClientesCadsatrados.setModel(new javax.swing.table.DefaultTableModel(
@@ -102,14 +48,14 @@ public class PesquisarCliente extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Cod", "Nome Completo", "CPF", "Dt Nascimento"
+                "Cod", "Nome Completo", "CPF", "Dt Nascimento", "RG", "Usuario"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -121,19 +67,9 @@ public class PesquisarCliente extends javax.swing.JInternalFrame {
             }
         });
         TabelaCliente.setViewportView(jTableClientesCadsatrados);
-        if (jTableClientesCadsatrados.getColumnModel().getColumnCount() > 0) {
-            jTableClientesCadsatrados.getColumnModel().getColumn(0).setMinWidth(40);
-            jTableClientesCadsatrados.getColumnModel().getColumn(0).setMaxWidth(50);
-            jTableClientesCadsatrados.getColumnModel().getColumn(1).setMinWidth(100);
-            jTableClientesCadsatrados.getColumnModel().getColumn(1).setMaxWidth(150);
-            jTableClientesCadsatrados.getColumnModel().getColumn(2).setMinWidth(80);
-            jTableClientesCadsatrados.getColumnModel().getColumn(2).setMaxWidth(100);
-            jTableClientesCadsatrados.getColumnModel().getColumn(3).setMinWidth(70);
-            jTableClientesCadsatrados.getColumnModel().getColumn(3).setMaxWidth(80);
-        }
 
         lblPesquisaClientes.setFont(new java.awt.Font("Arial Black", 1, 21)); // NOI18N
-        lblPesquisaClientes.setText("Pesquisa de Clientes");
+        lblPesquisaClientes.setText("Pesquisa de Funcionario");
 
         lblCpfPesquisa.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         lblCpfPesquisa.setText("CPF de Pesquisa");
@@ -204,14 +140,14 @@ public class PesquisarCliente extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(buttonCancelar)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(buttonDeletar)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(buttonAlterar))
-                        .addComponent(TabelaCliente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(226, 226, 226))
+                        .addComponent(TabelaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(113, 113, 113))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -254,7 +190,7 @@ public class PesquisarCliente extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 512, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -268,10 +204,10 @@ public class PesquisarCliente extends javax.swing.JInternalFrame {
         if (fieldCpf.getText() != null && !fieldCpf.getText().equals("")) {
             try {
                 String cpf = "";
-            cpf += fieldCpf.getText().substring(0, 3)
-                    + fieldCpf.getText().substring(4, 7)
-                    + fieldCpf.getText().substring(8, 11)
-                    + fieldCpf.getText().substring(12, 14);
+                cpf += fieldCpf.getText().substring(0, 3)
+                + fieldCpf.getText().substring(4, 7)
+                + fieldCpf.getText().substring(8, 11)
+                + fieldCpf.getText().substring(12, 14);
                 popularTabela(cpf);
             } catch (Exception ex) {
                 Logger.getLogger(PesquisarCliente.class.getName()).log(Level.SEVERE, null, ex);
@@ -295,32 +231,14 @@ public class PesquisarCliente extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_buttonPesquisaActionPerformed
 
-    private void buttonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_buttonCancelarActionPerformed
-
-    private void fieldCpfFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fieldCpfFocusGained
-        buttonPesquisa.setEnabled(true);
-        if (fieldCpf.getText() != null && fieldCpf.getText().length() != 14) {
-            fieldCpf.setText(null);
-            fieldCpf.setBorder(new LineBorder(Color.LIGHT_GRAY));
+    private void buttonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAlterarActionPerformed
+        try {
+            alterar();
+        } catch (Exception ex) {
+            Logger.getLogger(PesquisarCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_fieldCpfFocusGained
-
-    private void fieldCpfFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fieldCpfFocusLost
-        if (fieldCpf.getText().length() == 11) {
-            String CPF = fieldCpf.getText();
-            String CpfS = "";
-            CpfS += CPF.substring(0, 3) + ".";
-            CpfS += CPF.substring(3, 6) + ".";
-            CpfS += CPF.substring(6, 9) + "-";
-            CpfS += CPF.substring(9, 11);
-            fieldCpf.setText(CpfS);
-        } else if (fieldCpf.getText() != null && (fieldCpf.getText().length() > 11
-                || fieldCpf.getText().length() < 11)) {
-            fieldCpf.setBorder(new LineBorder(Color.RED));
-        } 
-    }//GEN-LAST:event_fieldCpfFocusLost
+        this.dispose();
+    }//GEN-LAST:event_buttonAlterarActionPerformed
 
     private void buttonDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeletarActionPerformed
 
@@ -328,8 +246,8 @@ public class PesquisarCliente extends javax.swing.JInternalFrame {
             final int row = jTableClientesCadsatrados.getSelectedRow();
             String nome = (String) jTableClientesCadsatrados.getValueAt(row, 1);
             int respostaConfirmacao = JOptionPane.showConfirmDialog(rootPane,
-                    "Excluir o cliente \"" + nome + "\"?",
-                    "Confirmar exclusão", JOptionPane.YES_NO_OPTION);
+                "Excluir o cliente \"" + nome + "\"?",
+                "Confirmar exclusão", JOptionPane.YES_NO_OPTION);
             if (respostaConfirmacao == JOptionPane.YES_OPTION) {
                 String cpf = (String) jTableClientesCadsatrados.getValueAt(row, 2);
                 Cliente cliente = null;
@@ -355,41 +273,35 @@ public class PesquisarCliente extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_buttonDeletarActionPerformed
 
-    public void alterar() throws Exception {
-        if (jTableClientesCadsatrados.getSelectedRow() >= 0) {
-            final int row = jTableClientesCadsatrados.getSelectedRow();
-            String cpf = (String) jTableClientesCadsatrados.getValueAt(row, 2);
-            Cliente cliente = ServicoCliente.procurarCliente(cpf);
-            if (cliente != null) {
-                incluirCliente.dispose();
-                incluirCliente = new IncluirCliente();
-                incluirCliente.setCliente(cliente);
-                incluirCliente.setModoEdicao(true);
-                incluirCliente.setTitle("Alterar dados, " + cliente.getNome()
-                        + " " + cliente.getSobrenome());
-                this.getParent().add(incluirCliente);
-                incluirCliente.setVisible(true);
-                incluirCliente.toFront();
-            } else {
-                JOptionPane.showMessageDialog(rootPane, "Não foi pré selecionado"
-                        + " um cliente para edicao",
-                        "Erro", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-
-    }
-
-    private void buttonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAlterarActionPerformed
-        try {
-            alterar();
-        } catch (Exception ex) {
-            Logger.getLogger(PesquisarCliente.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    private void buttonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarActionPerformed
         this.dispose();
-    }//GEN-LAST:event_buttonAlterarActionPerformed
+    }//GEN-LAST:event_buttonCancelarActionPerformed
+
+    private void fieldCpfFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fieldCpfFocusGained
+        buttonPesquisa.setEnabled(true);
+        if (fieldCpf.getText() != null && fieldCpf.getText().length() != 14) {
+            fieldCpf.setText(null);
+            fieldCpf.setBorder(new LineBorder(Color.LIGHT_GRAY));
+        }
+    }//GEN-LAST:event_fieldCpfFocusGained
+
+    private void fieldCpfFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fieldCpfFocusLost
+        if (fieldCpf.getText().length() == 11) {
+            String CPF = fieldCpf.getText();
+            String CpfS = "";
+            CpfS += CPF.substring(0, 3) + ".";
+            CpfS += CPF.substring(3, 6) + ".";
+            CpfS += CPF.substring(6, 9) + "-";
+            CpfS += CPF.substring(9, 11);
+            fieldCpf.setText(CpfS);
+        } else if (fieldCpf.getText() != null && (fieldCpf.getText().length() > 11
+            || fieldCpf.getText().length() < 11)) {
+        fieldCpf.setBorder(new LineBorder(Color.RED));
+        }
+    }//GEN-LAST:event_fieldCpfFocusLost
 
     private void fieldCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldCpfActionPerformed
-        
+
     }//GEN-LAST:event_fieldCpfActionPerformed
 
     private void buttonPesquisa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPesquisa1ActionPerformed
@@ -412,10 +324,4 @@ public class PesquisarCliente extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblCpfPesquisa;
     private javax.swing.JLabel lblPesquisaClientes;
     // End of variables declaration//GEN-END:variables
-
-    private void openFrameInCenter(IncluirCliente incluirCliente) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    
 }
