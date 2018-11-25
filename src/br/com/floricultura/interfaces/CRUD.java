@@ -5,6 +5,8 @@
  */
 package br.com.floricultura.interfaces;
 
+import br.com.floricultura.model.pessoa.cliente.Cliente;
+import br.com.floricultura.model.pessoa.funcionario.Funcionario;
 import java.util.List;
 
 /**
@@ -13,11 +15,13 @@ import java.util.List;
  */
 public interface CRUD {
     
-    public String inserir();
+    public String inserir(Cliente cliente, Funcionario funcionario);
+    
+    public String atualizar(Cliente cliente, Funcionario funcionario);
     
     public List<Object> listar();
     
-    public String excluir();
+    public String excluir(Cliente cliente, Funcionario funcionario);
     
     public String obterUm();
     

@@ -6,6 +6,8 @@
 package br.com.floricultura.db.dao.pessoa.funcionario;
 
 import br.com.floricultura.interfaces.CRUD;
+import br.com.floricultura.model.pessoa.cliente.Cliente;
+import br.com.floricultura.model.pessoa.funcionario.Funcionario;
 import java.util.List;
 
 /**
@@ -15,7 +17,7 @@ import java.util.List;
 public class DaoFuncionario implements CRUD {
 
     @Override
-    public String inserir() {
+    public String inserir(Cliente cliente, Funcionario Funcionario) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -25,7 +27,7 @@ public class DaoFuncionario implements CRUD {
     }
 
     @Override
-    public String excluir() {
+    public String excluir(Cliente cliente, Funcionario Funcionario) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -36,6 +38,11 @@ public class DaoFuncionario implements CRUD {
 
     @Override
     public String listarPorStatus() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String atualizar(Cliente cliente, Funcionario funcionario) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
