@@ -6,6 +6,7 @@
 package br.com.floricultura.servico;
 
 import br.com.floricultura.db.dao.DaoCliente;
+import br.com.floricultura.interfaces.CRUD;
 import br.com.floricultura.model.pessoa.cliente.Cliente;
 import br.com.floricultura.model.validador.ValidadorCliente;
 import java.awt.HeadlessException;
@@ -17,7 +18,7 @@ import javax.swing.JOptionPane;
  *
  * @author Raul de Paula
  */
-public class ServicoCliente {
+public class ServicoCliente implements CRUD {
     
     public static String cadastrarCliente(Cliente cliente) throws Exception {
         String resposta;
@@ -86,8 +87,29 @@ public class ServicoCliente {
         return cliente;
     }
     
-    public static List<Cliente> listar() throws Exception {
-        return DaoCliente.listar();
+    @Override
+    public String inserir() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String excluir() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String obterUm() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String listarPorStatus() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Object> listar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
