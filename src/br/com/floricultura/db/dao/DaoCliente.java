@@ -6,7 +6,7 @@
 package br.com.floricultura.db.dao;
 
 import br.com.floricultura.db.utils.ConnectionUtils;
-import br.com.floricultura.model.pessoa.Cliente;
+import br.com.floricultura.model.pessoa.cliente.Cliente;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
