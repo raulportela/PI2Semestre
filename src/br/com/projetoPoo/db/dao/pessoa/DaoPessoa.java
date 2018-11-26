@@ -5,9 +5,7 @@
  */
 package br.com.projetoPoo.db.dao.pessoa;
 
-import br.com.projetoPoo.db.dao.pessoa.cliente.DaoCliente;
 import br.com.projetoPoo.db.utils.ConnectionUtils;
-import br.com.projetoPoo.interfaces.CRUD;
 import br.com.projetoPoo.model.pessoa.Pessoa;
 import br.com.projetoPoo.model.pessoa.cliente.Cliente;
 import br.com.projetoPoo.model.pessoa.funcionario.Funcionario;
@@ -23,26 +21,22 @@ import java.util.logging.Logger;
  *
  * @author Raul de Paula
  */
-public class DaoPessoa implements CRUD {
+public class DaoPessoa{
 
-    
-    
-    @Override
     public List<Object> listar() {
         return null;
     }
 
-    @Override
     public String obterUm() {
         return null;
     }
 
-    @Override
     public String listarPorStatus() {
+        
+        
         return null;
     }
 
-    @Override
     public String atualizar(Cliente cliente, Funcionario funcionario) {
         boolean isClient = false;
         Pessoa pessoa = null;
@@ -103,7 +97,6 @@ public class DaoPessoa implements CRUD {
 
     }
 
-    @Override
     public String inserir(Cliente cliente, Funcionario funcionario) {
         boolean isClient = false;
         Pessoa pessoa = null;
@@ -167,7 +160,6 @@ public class DaoPessoa implements CRUD {
 
     }
 
-    @Override
     public String excluir(Cliente cliente, Funcionario funcionario) {
         boolean isClient = false;
         Pessoa pessoa = null;
@@ -175,8 +167,6 @@ public class DaoPessoa implements CRUD {
         if (cliente != null) {
             pessoa = cliente;
             isClient = true;
-            String sql = "UPDATE Funcionario SET disponivel=?\n"
-                    + "WHERE (cpf = ?)";
         } else if (funcionario != null) {
             pessoa = funcionario;
             isClient = false;
@@ -188,13 +178,25 @@ public class DaoPessoa implements CRUD {
             String sql = null;
             if (isClient) {
                 sql = "UPDATE Cliente SET disponivel=?\n"
-                    + "WHERE (cpf = ?)";
-            }else {
+                        + "WHERE (cpf = ?)";
+                connection = ConnectionUtils.getConnection();
+                preparedStatement = connection.prepareStatement(sql);
+
+                preparedStatement.setBoolean(1, funcionario.isStatus());
+                preparedStatement.setString(2, funcionario.getCpf());
+
+                preparedStatement.execute();
+            } else {
                 sql = "UPDATE Funcionario SET disponivel=?\n"
-                    + "WHERE (cpf = ?)";
+                        + "WHERE (cpf = ?)";
+                connection = ConnectionUtils.getConnection();
+                preparedStatement = connection.prepareStatement(sql);
+
+                preparedStatement.setBoolean(1, funcionario.isStatus());
+                preparedStatement.setString(2, funcionario.getCpf());
+
+                preparedStatement.execute();
             }
-            connection = ConnectionUtils.getConnection();
-            preparedStatement = connection.prepareStatement(sql);
 
         } catch (SQLException ex) {
             Logger.getLogger(DaoPessoa.class.getName()).log(Level.SEVERE, null, ex);

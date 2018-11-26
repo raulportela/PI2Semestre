@@ -6,7 +6,6 @@
 package br.com.projetoPoo.db.dao.pessoa.cliente;
 
 import br.com.projetoPoo.db.utils.ConnectionUtils;
-import br.com.projetoPoo.interfaces.CRUD;
 import br.com.projetoPoo.model.pessoa.cliente.Cliente;
 import br.com.projetoPoo.model.pessoa.funcionario.Funcionario;
 import java.sql.Connection;
@@ -22,9 +21,8 @@ import java.util.logging.Logger;
  *
  * @author Raul de Paula
  */
-public class DaoCliente implements CRUD {
+public class DaoCliente {
 
-    @Override
     public String inserir(Cliente cliente, Funcionario Funcionario) {
         String sql = "INSERT INTO cliente VALUES (0, ?, ?, ?, ?, ?, ?, ?, "
                 + "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -66,7 +64,6 @@ public class DaoCliente implements CRUD {
         return null;
     }
 
-    @Override
     public String excluir(Cliente cliente, Funcionario funcionario) {
                 String sql = "UPDATE cliente SET statusCliente=? WHERE (id=?)";
         Connection connection = null;
@@ -97,17 +94,14 @@ public class DaoCliente implements CRUD {
 
     }
 
-    @Override
     public String obterUm() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
     public String listarPorStatus() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
     public List<Object> listar() {
                         
         String sql = "SELECT * FROM cliente WHERE (StatusCliente=?)";
@@ -165,7 +159,6 @@ public class DaoCliente implements CRUD {
 
     }
 
-    @Override
     public String atualizar(Cliente cliente, Funcionario funcionario) {
               String sql = "UPDATE cliente SET statusCliente=?, nome=?, sobrenome=?, rg=?, cpf=?,"
                 + "dataNascimento=?, sexo=?, ufNascimento=?, estadoNascimento=?, estadoCivil=?, rua=?, numero=?,"
