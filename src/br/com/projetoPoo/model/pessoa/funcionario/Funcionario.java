@@ -6,7 +6,6 @@
 package br.com.projetoPoo.model.pessoa.funcionario;
 
 import br.com.projetoPoo.model.pessoa.Pessoa;
-import java.util.Date;
 
 /**
  *
@@ -14,12 +13,12 @@ import java.util.Date;
  */
 public class Funcionario extends Pessoa {
     
-    boolean status;
-    int codFuncionario;
-    String rg;
-    String usuario;
-    String senha;
-    String cargo;
+    private boolean status;
+    private int codFuncionario;
+    private String rg;
+    private String usuario;
+    private String senha;
+    private String cargo;
 
     public boolean isStatus() {
         return status;

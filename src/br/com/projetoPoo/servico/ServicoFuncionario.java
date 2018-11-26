@@ -5,38 +5,44 @@
  */
 package br.com.projetoPoo.servico;
 
-import br.com.projetoPoo.interfaces.CRUD;
+import br.com.projetoPoo.db.dao.pessoa.DaoPessoa;
+import br.com.projetoPoo.model.pessoa.funcionario.Funcionario;
 import java.util.List;
 
 /**
  *
  * @author Raul de Paula
  */
-public class ServicoFuncionario implements CRUD {
+public class ServicoFuncionario {
 
-    @Override
-    public String inserir() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public static String inserir(Funcionario funcionario) {
+        DaoPessoa.inserir(null, funcionario);
+        return null;
+    }
+    
+    public static String atualizar (Funcionario funcionario){
+        DaoPessoa.atualizar(null, funcionario);
+        return null;
+    }
+    
+    public static List<Funcionario> listar() {
+        List<Funcionario> listaFuncionarios = DaoPessoa.listarFuncionario();
+        return listaFuncionarios;
     }
 
-    @Override
-    public List<Object> listar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public static  String excluir(String cpf) {
+        DaoPessoa.excluir(false, cpf);
+        return null;
     }
 
-    @Override
-    public String excluir() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public static Funcionario obterUm(String cpf) {
+        Funcionario funcionario = DaoPessoa.obterUmFuncinario(cpf);
+        return funcionario;
     }
 
-    @Override
-    public String obterUm() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String listarPorStatus() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public static List<Funcionario> listarPorStatus(boolean status) {
+        List<Funcionario> listaFuncionarios = DaoPessoa.listarFuncionarioPorStatus(status);
+        return listaFuncionarios;
     }
     
 }

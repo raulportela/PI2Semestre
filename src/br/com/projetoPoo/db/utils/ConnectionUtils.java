@@ -18,7 +18,7 @@ public class ConnectionUtils {
     public static Connection getConnection() throws SQLException {
         Connection connection = null;
 
-        String dbURL = "jdbc:mysql://localhost:3306/floricultura";
+        String dbURL = "jdbc:mysql://localhost:3306/CrudPOO";
         Properties properties = new Properties();
         properties.put("user", "root");
         properties.put("password", "");

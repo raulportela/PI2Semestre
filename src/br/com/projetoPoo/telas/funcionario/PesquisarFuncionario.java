@@ -5,7 +5,17 @@
  */
 package br.com.projetoPoo.telas.funcionario;
 
+import br.com.projetoPoo.model.pessoa.funcionario.Funcionario;
+import br.com.projetoPoo.servico.ServicoFuncionario;
+import br.com.projetoPoo.telas.cliente.IncluirCliente;
+import br.com.projetoPoo.telas.cliente.PesquisarCliente;
+import java.awt.Color;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -13,11 +23,17 @@ import javax.swing.JOptionPane;
  */
 public class PesquisarFuncionario extends javax.swing.JInternalFrame {
 
+    IncluirFuncionario incluirFuncionario = new IncluirFuncionario();
+
     /**
      * Creates new form PesquisarCliente
      */
-    public PesquisarFuncionario() {
+    public PesquisarFuncionario() throws Exception {
         initComponents();
+        popularTabela(null, null);
+        lblCpfPesquisa.setVisible(false);
+        fieldCpf.setVisible(false);
+        buttonPesquisa.setVisible(false);
     }
 
     /**
@@ -39,9 +55,9 @@ public class PesquisarFuncionario extends javax.swing.JInternalFrame {
         buttonDeletar = new javax.swing.JButton();
         buttonCancelar = new javax.swing.JButton();
         fieldCpf = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        buttonPesquisa1 = new javax.swing.JToggleButton();
+        lblTipoPesquisa = new javax.swing.JLabel();
+        boxTipoPesquisa = new javax.swing.JComboBox<>();
+        buttonTipoPesquisa = new javax.swing.JToggleButton();
 
         jPanel1.setBackground(new java.awt.Color(240, 240, 255));
 
@@ -118,14 +134,14 @@ public class PesquisarFuncionario extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel1.setText("Pesquisar por:");
+        lblTipoPesquisa.setText("Pesquisar por:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "Cpf", "Ativos", "Negativos" }));
+        boxTipoPesquisa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "Cpf", "Ativos", "Negativos" }));
 
-        buttonPesquisa1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/lupa 1.png"))); // NOI18N
-        buttonPesquisa1.addActionListener(new java.awt.event.ActionListener() {
+        buttonTipoPesquisa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/lupa 1.png"))); // NOI18N
+        buttonTipoPesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonPesquisa1ActionPerformed(evt);
+                buttonTipoPesquisaActionPerformed(evt);
             }
         });
 
@@ -154,11 +170,11 @@ public class PesquisarFuncionario extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblPesquisaClientes)
-                    .addComponent(jLabel1)
+                    .addComponent(lblTipoPesquisa)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(boxTipoPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonPesquisa1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(buttonTipoPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -167,11 +183,11 @@ public class PesquisarFuncionario extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(lblPesquisaClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
+                .addComponent(lblTipoPesquisa)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonPesquisa1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(boxTipoPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonTipoPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblCpfPesquisa)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -202,36 +218,104 @@ public class PesquisarFuncionario extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void popularTabela(String cpf, String ativos) throws Exception {
+
+        List<Funcionario> listaFuncionarios = null;
+        try {
+            if(ativos.equals(null)){
+            listaFuncionarios = ServicoFuncionario.listar();
+            }else if (ativos.equals("Ativos")){
+                listaFuncionarios = ServicoFuncionario.listarPorStatus(true);
+            }else if (ativos.equals("Negativos")){
+                listaFuncionarios = ServicoFuncionario.listarPorStatus(false);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(PesquisarCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Funcionario funcionario;
+        DefaultTableModel dtmClientes = (DefaultTableModel) jTableClientesCadsatrados.getModel();
+        Object[] dados = new Object[6];
+        dtmClientes.setRowCount(0);
+        if (cpf != null && !cpf.equals("")) {
+            dtmClientes.setRowCount(0);
+            funcionario = ServicoFuncionario.obterUm(cpf);
+            dados[0] = funcionario.getCodFuncionario();
+            dados[1] = funcionario.getNome() + " " + funcionario.getSobrenome();
+            dados[2] = funcionario.getCpf();
+            dados[3] = funcionario.getDataNascimento();
+            dados[4] = funcionario.getUsuario();
+
+            dtmClientes.addRow(dados);
+        } else {
+            dtmClientes.setRowCount(0);
+            int contadorPosicao = 0;
+            while (listaFuncionarios != null && contadorPosicao < listaFuncionarios.size()) {
+                funcionario = listaFuncionarios.get(contadorPosicao);
+                dados[0] = funcionario.getCodFuncionario();
+                dados[1] = funcionario.getNome() + " " + funcionario.getSobrenome();
+                dados[2] = funcionario.getCpf();
+                dados[3] = funcionario.getDataNascimento();
+                dados[4] = funcionario.getUsuario();
+
+                dtmClientes.addRow(dados);
+                contadorPosicao++;
+            }
+        }
+    }
+
     private void buttonPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPesquisaActionPerformed
         if (fieldCpf.getText() != null && !fieldCpf.getText().equals("")) {
             try {
                 String cpf = "";
                 cpf += fieldCpf.getText().substring(0, 3)
-                + fieldCpf.getText().substring(4, 7)
-                + fieldCpf.getText().substring(8, 11)
-                + fieldCpf.getText().substring(12, 14);
-                popularTabela(cpf);
+                        + fieldCpf.getText().substring(4, 7)
+                        + fieldCpf.getText().substring(8, 11)
+                        + fieldCpf.getText().substring(12, 14);
+                popularTabela(cpf, null);
             } catch (Exception ex) {
-                Logger.getLogger(PesquisarCliente.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(PesquisarFuncionario.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }else if(fieldCpf.getText().equals("")) {
+        } else if (fieldCpf.getText().equals("")) {
             try {
-                popularTabela(null);
+                popularTabela(null, null);
             } catch (Exception ex) {
                 Logger.getLogger(PesquisarCliente.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } else if (fieldCpf.getText().length() != 14){
+        } else if (fieldCpf.getText().length() != 14) {
             JOptionPane.showMessageDialog(rootPane, "Numero de CPF Inválido.");
-        }
-        else {
+        } else {
             try {
-                popularTabela(null);
+                popularTabela(null, null);
             } catch (Exception ex) {
                 Logger.getLogger(PesquisarCliente.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }
     }//GEN-LAST:event_buttonPesquisaActionPerformed
+
+    public void alterar() throws Exception {
+        if (jTableClientesCadsatrados.getSelectedRow() >= 0) {
+            final int row = jTableClientesCadsatrados.getSelectedRow();
+            String cpf = (String) jTableClientesCadsatrados.getValueAt(row, 2);
+            Funcionario funcionario = ServicoFuncionario.obterUm(cpf);
+            if (funcionario != null) {
+                incluirFuncionario.dispose();
+                incluirFuncionario = new IncluirFuncionario();
+                incluirFuncionario.setFuncionario(funcionario);
+                incluirFuncionario.setModoEdicao(true);
+                incluirFuncionario.setTitle("Alterar dados, " + funcionario.getNome()
+                        + " " + funcionario.getSobrenome());
+                this.getParent().add(incluirFuncionario);
+                incluirFuncionario.setVisible(true);
+                incluirFuncionario.toFront();
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Não foi pré selecionado"
+                        + " um funcionario para edicao",
+                        "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+
+    }
 
     private void buttonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAlterarActionPerformed
         try {
@@ -248,20 +332,20 @@ public class PesquisarFuncionario extends javax.swing.JInternalFrame {
             final int row = jTableClientesCadsatrados.getSelectedRow();
             String nome = (String) jTableClientesCadsatrados.getValueAt(row, 1);
             int respostaConfirmacao = JOptionPane.showConfirmDialog(rootPane,
-                "Excluir o funcionario \"" + nome + "\"?",
-                "Confirmar exclusão", JOptionPane.YES_NO_OPTION);
+                    "Excluir o funcionario \"" + nome + "\"?",
+                    "Confirmar exclusão", JOptionPane.YES_NO_OPTION);
             if (respostaConfirmacao == JOptionPane.YES_OPTION) {
                 String cpf = (String) jTableClientesCadsatrados.getValueAt(row, 2);
                 String resposta = ServicoFuncionario.excluir(cpf);
 
                 if (resposta == null) {
-                    JOptionPane.showMessageDialog(null, "Cliente excluido com sucesso.");
+                    JOptionPane.showMessageDialog(null, "Funcionario excluido com sucesso.");
                 } else {
                     JOptionPane.showMessageDialog(null, resposta);
                 }
 
                 try {
-                    popularTabela(null);
+                    popularTabela(null, null);
                 } catch (Exception ex) {
                     Logger.getLogger(PesquisarCliente.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -291,8 +375,8 @@ public class PesquisarFuncionario extends javax.swing.JInternalFrame {
             CpfS += CPF.substring(9, 11);
             fieldCpf.setText(CpfS);
         } else if (fieldCpf.getText() != null && (fieldCpf.getText().length() > 11
-            || fieldCpf.getText().length() < 11)) {
-        fieldCpf.setBorder(new LineBorder(Color.RED));
+                || fieldCpf.getText().length() < 11)) {
+            fieldCpf.setBorder(new LineBorder(Color.RED));
         }
     }//GEN-LAST:event_fieldCpfFocusLost
 
@@ -300,24 +384,45 @@ public class PesquisarFuncionario extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_fieldCpfActionPerformed
 
-    private void buttonPesquisa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPesquisa1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_buttonPesquisa1ActionPerformed
+    private void buttonTipoPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTipoPesquisaActionPerformed
+        String tipoPesquisa = (String) boxTipoPesquisa.getSelectedItem();
+        if (tipoPesquisa.equals("Cpf")) {
+            lblCpfPesquisa.setVisible(false);
+            fieldCpf.setVisible(false);
+            buttonPesquisa.setVisible(false);
+            
+            lblTipoPesquisa.setVisible(false);
+            boxTipoPesquisa.setVisible(false);
+            buttonTipoPesquisa.setVisible(false);
+        }else if(tipoPesquisa.equals("Ativos")){
+            try {
+                popularTabela(null, "Ativos");
+            } catch (Exception ex) {
+                Logger.getLogger(PesquisarFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else if(tipoPesquisa.equals("Negativos")){
+            try {
+                popularTabela(null, "Negativos");
+            } catch (Exception ex) {
+                Logger.getLogger(PesquisarFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_buttonTipoPesquisaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane TabelaCliente;
+    private javax.swing.JComboBox<String> boxTipoPesquisa;
     private javax.swing.JButton buttonAlterar;
     private javax.swing.JButton buttonCancelar;
     private javax.swing.JButton buttonDeletar;
     private javax.swing.JToggleButton buttonPesquisa;
-    private javax.swing.JToggleButton buttonPesquisa1;
+    private javax.swing.JToggleButton buttonTipoPesquisa;
     private javax.swing.JTextField fieldCpf;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTable jTableClientesCadsatrados;
     private javax.swing.JLabel lblCpfPesquisa;
     private javax.swing.JLabel lblPesquisaClientes;
+    private javax.swing.JLabel lblTipoPesquisa;
     // End of variables declaration//GEN-END:variables
 }

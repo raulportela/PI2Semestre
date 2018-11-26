@@ -6,7 +6,10 @@
 package br.com.projetoPoo.telas.funcionario;
 
 import br.com.projetoPoo.model.pessoa.funcionario.Funcionario;
+import br.com.projetoPoo.servico.ServicoFuncionario;
 import java.awt.Color;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
 
@@ -42,7 +45,7 @@ public class IncluirFuncionario extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        painelCliente = new javax.swing.JPanel();
+        painelFuncionario = new javax.swing.JPanel();
         lblNome = new javax.swing.JLabel();
         lblSobrenome = new javax.swing.JLabel();
         lblCPF = new javax.swing.JLabel();
@@ -63,7 +66,7 @@ public class IncluirFuncionario extends javax.swing.JInternalFrame {
         fieldSenha = new javax.swing.JPasswordField();
         comboCargo = new javax.swing.JComboBox<>();
 
-        painelCliente.setBackground(new java.awt.Color(240, 240, 255));
+        painelFuncionario.setBackground(new java.awt.Color(240, 240, 255));
 
         lblNome.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         lblNome.setText("Nome*");
@@ -150,103 +153,103 @@ public class IncluirFuncionario extends javax.swing.JInternalFrame {
 
         comboCargo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "Gerente", "Peão" }));
 
-        javax.swing.GroupLayout painelClienteLayout = new javax.swing.GroupLayout(painelCliente);
-        painelCliente.setLayout(painelClienteLayout);
-        painelClienteLayout.setHorizontalGroup(
-            painelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelClienteLayout.createSequentialGroup()
+        javax.swing.GroupLayout painelFuncionarioLayout = new javax.swing.GroupLayout(painelFuncionario);
+        painelFuncionario.setLayout(painelFuncionarioLayout);
+        painelFuncionarioLayout.setHorizontalGroup(
+            painelFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelFuncionarioLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(painelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(painelClienteLayout.createSequentialGroup()
+                .addGroup(painelFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painelFuncionarioLayout.createSequentialGroup()
                         .addComponent(fieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(fieldSobrenome))
-                    .addGroup(painelClienteLayout.createSequentialGroup()
-                        .addGroup(painelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painelFuncionarioLayout.createSequentialGroup()
+                        .addGroup(painelFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblCPF)
                             .addComponent(fieldCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(painelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(painelClienteLayout.createSequentialGroup()
+                        .addGroup(painelFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(painelFuncionarioLayout.createSequentialGroup()
                                 .addComponent(fieldData)
                                 .addGap(4, 4, 4))
-                            .addGroup(painelClienteLayout.createSequentialGroup()
+                            .addGroup(painelFuncionarioLayout.createSequentialGroup()
                                 .addComponent(lblDtNasc)
                                 .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelClienteLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelFuncionarioLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(buttonCancelar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonSalvar))
-                    .addGroup(painelClienteLayout.createSequentialGroup()
-                        .addGroup(painelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(painelClienteLayout.createSequentialGroup()
+                    .addGroup(painelFuncionarioLayout.createSequentialGroup()
+                        .addGroup(painelFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(painelFuncionarioLayout.createSequentialGroup()
                                 .addComponent(lblNome)
                                 .addGap(161, 161, 161)
                                 .addComponent(lblSobrenome))
                             .addComponent(lblCadastroFuncionario)
-                            .addGroup(painelClienteLayout.createSequentialGroup()
+                            .addGroup(painelFuncionarioLayout.createSequentialGroup()
                                 .addComponent(lblRg)
-                                .addGap(171, 171, 171)
+                                .addGap(114, 114, 114)
                                 .addComponent(lblCargo)))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(painelClienteLayout.createSequentialGroup()
+                    .addGroup(painelFuncionarioLayout.createSequentialGroup()
                         .addComponent(fieldRg)
                         .addGap(6, 6, 6)
                         .addComponent(comboCargo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(painelClienteLayout.createSequentialGroup()
-                        .addGroup(painelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painelFuncionarioLayout.createSequentialGroup()
+                        .addGroup(painelFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblUsuario)
                             .addComponent(fieldUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(painelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(painelClienteLayout.createSequentialGroup()
+                        .addGroup(painelFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(painelFuncionarioLayout.createSequentialGroup()
                                 .addComponent(lblSenha)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(fieldSenha))))
                 .addContainerGap())
         );
-        painelClienteLayout.setVerticalGroup(
-            painelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelClienteLayout.createSequentialGroup()
+        painelFuncionarioLayout.setVerticalGroup(
+            painelFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelFuncionarioLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblCadastroFuncionario)
                 .addGap(18, 18, 18)
-                .addGroup(painelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(painelFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblNome)
                     .addComponent(lblSobrenome))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(painelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelClienteLayout.createSequentialGroup()
-                        .addGroup(painelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(painelFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelFuncionarioLayout.createSequentialGroup()
+                        .addGroup(painelFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(fieldSobrenome)
                             .addComponent(fieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblCPF)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(fieldCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelClienteLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelFuncionarioLayout.createSequentialGroup()
                         .addComponent(lblDtNasc)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(fieldData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(painelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(painelFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblRg)
                     .addComponent(lblCargo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(painelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(painelFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fieldRg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(painelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(painelFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUsuario)
                     .addComponent(lblSenha))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(painelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(painelFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fieldUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(fieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(painelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(painelFuncionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(buttonSalvar)
                     .addComponent(buttonCancelar))
                 .addContainerGap())
@@ -257,12 +260,12 @@ public class IncluirFuncionario extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(painelCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(painelFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(painelCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(painelFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -284,28 +287,28 @@ public class IncluirFuncionario extends javax.swing.JInternalFrame {
         
         if (!modoEdicao) {
             
-        } else if (funcionario == null) {
-            JOptionPane.showMessageDialog(rootPane, "Não foi pré selecionado um cliente"
+        } else if (getFuncionario() == null) {
+            JOptionPane.showMessageDialog(rootPane, "Não foi pré selecionado um funcionario"
                 + " para realizar alterações");
             return;
         }
         
-        funcionario.setNome(fieldNome.getText().trim().toUpperCase());
-        funcionario.setSobrenome(fieldSobrenome.getText().trim().toUpperCase());
-        funcionario.setCpf(fieldCpf.getText());
-        funcionario.setRg(fieldRg.getText().trim().toUpperCase());
-        funcionario.setDataNascimento(fieldData.getText());
-        funcionario.setUsuario(fieldUsuario.getText());
+        getFuncionario().setNome(fieldNome.getText().trim().toUpperCase());
+        getFuncionario().setSobrenome(fieldSobrenome.getText().trim().toUpperCase());
+        getFuncionario().setCpf(fieldCpf.getText());
+        getFuncionario().setRg(fieldRg.getText().trim().toUpperCase());
+        getFuncionario().setDataNascimento(fieldData.getText());
+        getFuncionario().setUsuario(fieldUsuario.getText());
 
         String resposta = null;
         if (!modoEdicao) {
             try {
-                resposta = ServicoFuncionario.inserir(funcionario);
+                resposta = ServicoFuncionario.inserir(getFuncionario());
             } catch (Exception ex) {
-                Logger.getLogger(IncluirCliente.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(IncluirFuncionario.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
-            resposta = ServicoFuncionario.atualizar(funcionario);
+            resposta = ServicoFuncionario.atualizar(getFuncionario());
         }
         if (resposta == null) {
             if (!modoEdicao) {
@@ -412,6 +415,20 @@ public class IncluirFuncionario extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblSenha;
     private javax.swing.JLabel lblSobrenome;
     private javax.swing.JLabel lblUsuario;
-    private javax.swing.JPanel painelCliente;
+    private javax.swing.JPanel painelFuncionario;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the funcionario
+     */
+    public Funcionario getFuncionario() {
+        return funcionario;
+    }
+
+    /**
+     * @param funcionario the funcionario to set
+     */
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
+    }
 }

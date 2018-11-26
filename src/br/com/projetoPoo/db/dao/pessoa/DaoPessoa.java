@@ -24,7 +24,7 @@ import java.util.logging.Logger;
  */
 public class DaoPessoa {
 
-    public List<Funcionario> listarFuncionario() {
+    public static List<Funcionario> listarFuncionario() {
 
         String sql = "SELECT * FROM PESSOA P\n"
                 + "JOIN FUNCIONARIO F\n"
@@ -61,7 +61,7 @@ public class DaoPessoa {
         return null;
     }
 
-    public List<Cliente> listarClientes() {
+    public static  List<Cliente> listarClientes() {
         String sql = "SELECT * FROM PESSOA P\n"
                 + "JOIN CLIENTE C\n"
                 + "ON P.ID = C.IDPESSOA";
@@ -96,7 +96,7 @@ public class DaoPessoa {
 
     }
 
-    public Funcionario obterUmFuncinario(String cpf) {
+    public static  Funcionario obterUmFuncinario(String cpf) {
 
         String sql = "SELECT * FROM PESSOA P\n"
                 + "JOIN FUNCIONARIO F\n"
@@ -133,7 +133,7 @@ public class DaoPessoa {
         return null;
     }
 
-    public Cliente obterUmCliente(String cpf) {
+    public static Cliente obterUmCliente(String cpf) {
 
         String sql = "SELECT * FROM PESSOA P\n"
                 + "JOIN CLIENTE C\n"
@@ -167,7 +167,7 @@ public class DaoPessoa {
 
     }
 
-    public List<Funcionario> listarFuncionarioPorStatus(boolean status) {
+    public static  List<Funcionario> listarFuncionarioPorStatus(boolean status) {
 
         String sql = "SELECT * FROM PESSOA P\n"
                 + "JOIN FUNCIONARIO F\n"
@@ -206,7 +206,7 @@ public class DaoPessoa {
         return null;
     }
 
-    public List<Cliente> listarClientePorStatus(boolean status) {
+    public static List<Cliente> listarClientePorStatus(boolean status) {
 
         String sql = "SELECT * FROM PESSOA P\n"
                 + "JOIN CLIENTE C\n"
@@ -244,7 +244,7 @@ public class DaoPessoa {
 
     }
 
-    public String atualizar(Cliente cliente, Funcionario funcionario) {
+    public static String atualizar(Cliente cliente, Funcionario funcionario) {
         boolean isClient = false;
         Pessoa pessoa = null;
         if (cliente != null) {
@@ -304,7 +304,7 @@ public class DaoPessoa {
 
     }
 
-    public String inserir(Cliente cliente, Funcionario funcionario) {
+    public static String inserir(Cliente cliente, Funcionario funcionario) {
         boolean isClient = false;
         Pessoa pessoa = null;
         if (cliente != null) {
@@ -367,7 +367,7 @@ public class DaoPessoa {
 
     }
 
-    public String excluir(boolean isClient, String cpf) {
+    public static String excluir(boolean isClient, String cpf) {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
