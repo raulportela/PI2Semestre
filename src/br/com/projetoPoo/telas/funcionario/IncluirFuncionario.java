@@ -310,10 +310,16 @@ public class IncluirFuncionario extends javax.swing.JInternalFrame {
                 + " para realizar alterações");
             return;
         }
-        
+        funcionario = new Funcionario();
         getFuncionario().setNome(fieldNome.getText().trim().toUpperCase());
         getFuncionario().setSobrenome(fieldSobrenome.getText().trim().toUpperCase());
         getFuncionario().setCpf(fieldCpf.getText());
+        Funcionario statusFuncionario = ServicoFuncionario.obterUm(funcionario.getCpf());
+        if (statusFuncionario.isStatus()) {
+            funcionario.setStatus(true);
+        }else{
+            funcionario.setStatus(!true);
+        }
         getFuncionario().setRg(fieldRg.getText().trim().toUpperCase());
         getFuncionario().setDataNascimento(fieldData.getText());
         getFuncionario().setUsuario(fieldUsuario.getText());
