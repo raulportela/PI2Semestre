@@ -5,8 +5,6 @@
  */
 package br.com.projetoPoo.model.pessoa;
 
-import java.util.Date;
-
 /**
  *
  * @author Leonardo Maia
