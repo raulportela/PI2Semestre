@@ -27,7 +27,7 @@ public class DaoPessoa{
         return null;
     }
 
-    public String obterUm() {
+    public Object obterUm() {
         return null;
     }
 
