@@ -137,6 +137,11 @@ public class PesquisarFuncionario extends javax.swing.JInternalFrame {
         lblTipoPesquisa.setText("Pesquisar por:");
 
         boxTipoPesquisa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "Cpf", "Ativos", "Negativos" }));
+        boxTipoPesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxTipoPesquisaActionPerformed(evt);
+            }
+        });
 
         buttonTipoPesquisa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/lupa 1.png"))); // NOI18N
         buttonTipoPesquisa.addActionListener(new java.awt.event.ActionListener() {
@@ -409,6 +414,9 @@ public class PesquisarFuncionario extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_buttonTipoPesquisaActionPerformed
 
+    private void boxTipoPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxTipoPesquisaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_boxTipoPesquisaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane TabelaCliente;

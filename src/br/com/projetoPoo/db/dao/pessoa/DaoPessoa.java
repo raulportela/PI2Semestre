@@ -13,7 +13,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -61,7 +65,7 @@ public class DaoPessoa {
         return null;
     }
 
-    public static  List<Cliente> listarClientes() {
+    public static List<Cliente> listarClientes() {
         String sql = "SELECT * FROM PESSOA P\n"
                 + "JOIN CLIENTE C\n"
                 + "ON P.ID = C.IDPESSOA";
@@ -96,7 +100,7 @@ public class DaoPessoa {
 
     }
 
-    public static  Funcionario obterUmFuncinario(String cpf) {
+    public static Funcionario obterUmFuncinario(String cpf) {
 
         String sql = "SELECT * FROM PESSOA P\n"
                 + "JOIN FUNCIONARIO F\n"
@@ -167,7 +171,7 @@ public class DaoPessoa {
 
     }
 
-    public static  List<Funcionario> listarFuncionarioPorStatus(boolean status) {
+    public static List<Funcionario> listarFuncionarioPorStatus(boolean status) {
 
         String sql = "SELECT * FROM PESSOA P\n"
                 + "JOIN FUNCIONARIO F\n"
@@ -304,6 +308,17 @@ public class DaoPessoa {
 
     }
 
+    public void valData(String data) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            sdf.setLenient(false);//valida data
+            System.out.println(sdf.parse(data));// retorna o tipo data
+            System.out.println(sdf.format(sdf.parse(data)));//retorna a data como vc escolheu no data formta
+        } catch (ParseException ex) {
+            javax.swing.JOptionPane.showMessageDialog(null, "Data Invalida", "ERRO", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
     public static String inserir(Cliente cliente, Funcionario funcionario) {
         boolean isClient = false;
         Pessoa pessoa = null;
@@ -325,7 +340,11 @@ public class DaoPessoa {
             preparedStatement.setString(1, pessoa.getNome());
             preparedStatement.setString(2, pessoa.getSobrenome());
             preparedStatement.setString(3, pessoa.getCpf());
-            preparedStatement.setString(4, pessoa.getDataNascimento());
+            // Precisar arruamr um jeitto para colcor a data certa
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		
+            
+            preparedStatement.setTimestamp(4, timestamp);
             preparedStatement.execute();
 
             int chavePessoa = 0;

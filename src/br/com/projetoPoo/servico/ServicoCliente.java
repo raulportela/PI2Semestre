@@ -5,51 +5,45 @@
  */
 package br.com.projetoPoo.servico;
 
-import br.com.projetoPoo.db.dao.pessoa.cliente.DaoCliente;
-import br.com.projetoPoo.interfaces.CRUD;
+import br.com.projetoPoo.db.dao.pessoa.DaoPessoa;
 import br.com.projetoPoo.model.pessoa.cliente.Cliente;
 import br.com.projetoPoo.model.pessoa.funcionario.Funcionario;
-import br.com.projetoPoo.model.validador.ValidadorCliente;
-import java.awt.HeadlessException;
-import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
 
 /**
  *
  * @author Raul de Paula
  */
-public class ServicoCliente implements CRUD {
+public class ServicoCliente {
     
-   
+    public static String inserir(Cliente cliente) {
+        DaoPessoa.inserir(cliente, null);
+        return null;
+    }
     
-    public String inserir(Cliente cliente, Funcionario funcionario) {
-        
+    public static String atualizar (Cliente cliente){
+        DaoPessoa.atualizar(cliente, null);
+        return null;
     }
-
-    @Override
-    public String atualizar(Cliente cliente, Funcionario funcionario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     
-    public List<Object> listar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public static List<Cliente> listar() {
+        List<Cliente> listaClientes = DaoPessoa.listarClientes();
+        return listaClientes;
     }
 
-    @Override
-    public String excluir(Cliente cliente, Funcionario funcionario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public static  String excluir(String cpf) {
+        DaoPessoa.excluir(false, cpf);
+        return null;
     }
 
-    @Override
-    public String obterUm() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public static Cliente obterUm(String cpf) {
+        Cliente cliente = DaoPessoa.obterUmCliente(cpf);
+        return cliente;
     }
 
-    @Override
-    public String listarPorStatus() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public static List<Cliente> listarPorStatus(boolean status) {
+        List<Cliente> listaClientes = DaoPessoa.listarClientePorStatus(status);
+        return listaClientes;
     }
     
 }

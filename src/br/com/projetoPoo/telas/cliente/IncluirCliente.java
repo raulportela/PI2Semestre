@@ -334,12 +334,12 @@ public class IncluirCliente extends javax.swing.JInternalFrame {
         String resposta = null;
         if (!modoEdicao) {
             try {
-                resposta = ServicoCliente.cadastrarCliente(cliente);
+                resposta = ServicoCliente.inserir(cliente);
             } catch (Exception ex) {
                 Logger.getLogger(IncluirCliente.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
-            resposta = ServicoCliente.atualizarCliente(cliente);
+            resposta = ServicoCliente.atualizar(cliente);
         }
         if (resposta == null) {
             if (!modoEdicao) {

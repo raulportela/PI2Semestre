@@ -25,44 +25,50 @@ public class PesquisarCliente extends javax.swing.JInternalFrame {
 
     public PesquisarCliente() throws Exception {
         initComponents();
-        popularTabela(null);
+        popularTabela(null, null);
+        lblCpfPesquisa.setVisible(false);
+        fieldCpf.setVisible(false);
+        buttonPesquisa.setVisible(false);
     }
 
-    private void popularTabela(String cpf) throws Exception {
+    private void popularTabela(String cpf, String ativos) throws Exception {
 
         List<Cliente> listaClientes = null;
         try {
-            listaClientes = ServicoCliente.listar();
+            if (ativos.equals(null)) {
+                listaClientes = ServicoCliente.listar();
+            } else if (ativos.equals("Ativos")) {
+                listaClientes = ServicoCliente.listarPorStatus(true);
+            } else if (ativos.equals("Negativos")) {
+                listaClientes = ServicoCliente.listarPorStatus(false);
+            }
+
         } catch (Exception ex) {
             Logger.getLogger(PesquisarCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
         Cliente clienteC;
         DefaultTableModel dtmClientes = (DefaultTableModel) jTableClientesCadsatrados.getModel();
-        Object[] dados = new Object[6];
+        Object[] dados = new Object[4];
         dtmClientes.setRowCount(0);
         if (cpf != null && !cpf.equals("")) {
             dtmClientes.setRowCount(0);
-            clienteC = ServicoCliente.procurarCliente(cpf);
-            dados[0] = clienteC.getIdCliente();
+            clienteC = ServicoCliente.obterUm(cpf);
+            dados[0] = clienteC.getCodCliente();
             dados[1] = clienteC.getNome() + " " + clienteC.getSobrenome();
             dados[2] = clienteC.getCpf();
-            dados[3] = clienteC.getRua() + ", " + clienteC.getNumero() + " - "
-                    + clienteC.getBairro() + " - " + clienteC.getUf() + " - " + clienteC.getEstado();
-            dados[4] = clienteC.getTelefone() + " - " + clienteC.getCelular();
-            dados[5] = clienteC.getEmail();
+            dados[3] = clienteC.getDataNascimento();
+
             dtmClientes.addRow(dados);
         } else {
             dtmClientes.setRowCount(0);
             int contadorPosicao = 0;
             while (listaClientes != null && contadorPosicao < listaClientes.size()) {
                 clienteC = listaClientes.get(contadorPosicao);
-                dados[0] = clienteC.getIdCliente();
+                dados[0] = clienteC.getCodCliente();
                 dados[1] = clienteC.getNome() + " " + clienteC.getSobrenome();
                 dados[2] = clienteC.getCpf();
-                dados[3] = clienteC.getRua() + ", " + clienteC.getNumero() + " - "
-                        + clienteC.getBairro() + " - " + clienteC.getUf() + " - " + clienteC.getEstado();
-                dados[4] = clienteC.getTelefone() + " - " + clienteC.getCelular();
-                dados[5] = clienteC.getEmail();
+                dados[3] = clienteC.getDataNascimento();
+
                 dtmClientes.addRow(dados);
                 contadorPosicao++;
             }
@@ -88,9 +94,9 @@ public class PesquisarCliente extends javax.swing.JInternalFrame {
         buttonDeletar = new javax.swing.JButton();
         buttonCancelar = new javax.swing.JButton();
         fieldCpf = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        buttonPesquisa1 = new javax.swing.JToggleButton();
+        lblTipoPesquisa = new javax.swing.JLabel();
+        boxTipoPesquisa = new javax.swing.JComboBox<>();
+        buttonTipoPesquisa = new javax.swing.JToggleButton();
 
         setClosable(true);
         setTitle("Cliente");
@@ -180,14 +186,19 @@ public class PesquisarCliente extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel1.setText("Pesquisar por:");
+        lblTipoPesquisa.setText("Pesquisar por:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "Cpf", "Ativos", "Negativos" }));
-
-        buttonPesquisa1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/lupa 1.png"))); // NOI18N
-        buttonPesquisa1.addActionListener(new java.awt.event.ActionListener() {
+        boxTipoPesquisa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "Cpf", "Ativos", "Negativos" }));
+        boxTipoPesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonPesquisa1ActionPerformed(evt);
+                boxTipoPesquisaActionPerformed(evt);
+            }
+        });
+
+        buttonTipoPesquisa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/lupa 1.png"))); // NOI18N
+        buttonTipoPesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonTipoPesquisaActionPerformed(evt);
             }
         });
 
@@ -216,11 +227,11 @@ public class PesquisarCliente extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblPesquisaClientes)
-                    .addComponent(jLabel1)
+                    .addComponent(lblTipoPesquisa)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(boxTipoPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonPesquisa1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(buttonTipoPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -229,11 +240,11 @@ public class PesquisarCliente extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(lblPesquisaClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
+                .addComponent(lblTipoPesquisa)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonPesquisa1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(boxTipoPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonTipoPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblCpfPesquisa)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -268,26 +279,25 @@ public class PesquisarCliente extends javax.swing.JInternalFrame {
         if (fieldCpf.getText() != null && !fieldCpf.getText().equals("")) {
             try {
                 String cpf = "";
-            cpf += fieldCpf.getText().substring(0, 3)
-                    + fieldCpf.getText().substring(4, 7)
-                    + fieldCpf.getText().substring(8, 11)
-                    + fieldCpf.getText().substring(12, 14);
-                popularTabela(cpf);
+                cpf += fieldCpf.getText().substring(0, 3)
+                        + fieldCpf.getText().substring(4, 7)
+                        + fieldCpf.getText().substring(8, 11)
+                        + fieldCpf.getText().substring(12, 14);
+                popularTabela(cpf, null);
             } catch (Exception ex) {
                 Logger.getLogger(PesquisarCliente.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }else if(fieldCpf.getText().equals("")) {
+        } else if (fieldCpf.getText().equals("")) {
             try {
-                popularTabela(null);
+                popularTabela(null, null);
             } catch (Exception ex) {
                 Logger.getLogger(PesquisarCliente.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } else if (fieldCpf.getText().length() != 14){
+        } else if (fieldCpf.getText().length() != 14) {
             JOptionPane.showMessageDialog(rootPane, "Numero de CPF Inválido.");
-        }
-        else {
+        } else {
             try {
-                popularTabela(null);
+                popularTabela(null, null);
             } catch (Exception ex) {
                 Logger.getLogger(PesquisarCliente.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -319,7 +329,7 @@ public class PesquisarCliente extends javax.swing.JInternalFrame {
         } else if (fieldCpf.getText() != null && (fieldCpf.getText().length() > 11
                 || fieldCpf.getText().length() < 11)) {
             fieldCpf.setBorder(new LineBorder(Color.RED));
-        } 
+        }
     }//GEN-LAST:event_fieldCpfFocusLost
 
     private void buttonDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeletarActionPerformed
@@ -332,13 +342,7 @@ public class PesquisarCliente extends javax.swing.JInternalFrame {
                     "Confirmar exclusão", JOptionPane.YES_NO_OPTION);
             if (respostaConfirmacao == JOptionPane.YES_OPTION) {
                 String cpf = (String) jTableClientesCadsatrados.getValueAt(row, 2);
-                Cliente cliente = null;
-                try {
-                    cliente = ServicoCliente.procurarCliente(cpf);
-                } catch (Exception ex) {
-                    Logger.getLogger(PesquisarCliente.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                String resposta = ServicoCliente.excluirCliente(cliente.getIdCliente());
+                String resposta = ServicoCliente.excluir(cpf);
 
                 if (resposta == null) {
                     JOptionPane.showMessageDialog(null, "Cliente excluido com sucesso.");
@@ -347,7 +351,7 @@ public class PesquisarCliente extends javax.swing.JInternalFrame {
                 }
 
                 try {
-                    popularTabela(null);
+                    popularTabela(null, null);
                 } catch (Exception ex) {
                     Logger.getLogger(PesquisarCliente.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -359,7 +363,7 @@ public class PesquisarCliente extends javax.swing.JInternalFrame {
         if (jTableClientesCadsatrados.getSelectedRow() >= 0) {
             final int row = jTableClientesCadsatrados.getSelectedRow();
             String cpf = (String) jTableClientesCadsatrados.getValueAt(row, 2);
-            Cliente cliente = ServicoCliente.procurarCliente(cpf);
+            Cliente cliente = ServicoCliente.obterUm(cpf);
             if (cliente != null) {
                 incluirCliente.dispose();
                 incluirCliente = new IncluirCliente();
@@ -389,33 +393,53 @@ public class PesquisarCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_buttonAlterarActionPerformed
 
     private void fieldCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldCpfActionPerformed
-        
+
     }//GEN-LAST:event_fieldCpfActionPerformed
 
-    private void buttonPesquisa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPesquisa1ActionPerformed
+    private void buttonTipoPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTipoPesquisaActionPerformed
+
+        String tipoPesquisa = (String) boxTipoPesquisa.getSelectedItem();
+        if (tipoPesquisa.equals("Cpf")) {
+            lblCpfPesquisa.setVisible(false);
+            fieldCpf.setVisible(false);
+            buttonPesquisa.setVisible(false);
+
+            lblTipoPesquisa.setVisible(false);
+            boxTipoPesquisa.setVisible(false);
+            buttonTipoPesquisa.setVisible(false);
+        } else if (tipoPesquisa.equals("Ativos")) {
+            try {
+                popularTabela(null, "Ativos");
+            } catch (Exception ex) {
+                Logger.getLogger(PesquisarCliente.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else if (tipoPesquisa.equals("Negativos")) {
+            try {
+                popularTabela(null, "Negativos");
+            } catch (Exception ex) {
+                Logger.getLogger(PesquisarCliente.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_buttonTipoPesquisaActionPerformed
+
+    private void boxTipoPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxTipoPesquisaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_buttonPesquisa1ActionPerformed
+    }//GEN-LAST:event_boxTipoPesquisaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane TabelaCliente;
+    private javax.swing.JComboBox<String> boxTipoPesquisa;
     private javax.swing.JButton buttonAlterar;
     private javax.swing.JButton buttonCancelar;
     private javax.swing.JButton buttonDeletar;
     private javax.swing.JToggleButton buttonPesquisa;
-    private javax.swing.JToggleButton buttonPesquisa1;
+    private javax.swing.JToggleButton buttonTipoPesquisa;
     private javax.swing.JTextField fieldCpf;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTable jTableClientesCadsatrados;
     private javax.swing.JLabel lblCpfPesquisa;
     private javax.swing.JLabel lblPesquisaClientes;
+    private javax.swing.JLabel lblTipoPesquisa;
     // End of variables declaration//GEN-END:variables
-
-    private void openFrameInCenter(IncluirCliente incluirCliente) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    
 }
