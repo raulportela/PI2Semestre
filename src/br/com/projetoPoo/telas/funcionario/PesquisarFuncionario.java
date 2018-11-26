@@ -30,7 +30,7 @@ public class PesquisarFuncionario extends javax.swing.JInternalFrame {
      */
     public PesquisarFuncionario() throws Exception {
         initComponents();
-        popularTabela(null, "todos");
+        popularTabela(null, "Ativos");
         lblCpfPesquisa.setVisible(false);
         fieldCpf.setVisible(false);
         buttonPesquisa.setVisible(false);
@@ -136,7 +136,7 @@ public class PesquisarFuncionario extends javax.swing.JInternalFrame {
 
         lblTipoPesquisa.setText("Pesquisar por:");
 
-        boxTipoPesquisa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "Cpf", "Ativos", "Negativos" }));
+        boxTipoPesquisa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "Cpf", "Todos", "Ativos", "Negativos" }));
         boxTipoPesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boxTipoPesquisaActionPerformed(evt);
@@ -285,13 +285,21 @@ public class PesquisarFuncionario extends javax.swing.JInternalFrame {
                         + fieldCpf.getText().substring(4, 7)
                         + fieldCpf.getText().substring(8, 11)
                         + fieldCpf.getText().substring(12, 14);
-                popularTabela(cpf, "todos");
+                popularTabela(cpf, "Ativos");
+                lblCpfPesquisa.setVisible(false);
+                fieldCpf.setVisible(false);
+                buttonPesquisa.setVisible(false);
+
+                lblTipoPesquisa.setVisible(true);
+                boxTipoPesquisa.setVisible(true);
+                buttonTipoPesquisa.setVisible(true);
+                
             } catch (Exception ex) {
                 Logger.getLogger(PesquisarFuncionario.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else if (fieldCpf.getText().equals("")) {
             try {
-                popularTabela(null, "todos");
+                popularTabela(null, "Ativos");
                 lblCpfPesquisa.setVisible(false);
                 fieldCpf.setVisible(false);
                 buttonPesquisa.setVisible(false);
@@ -306,7 +314,7 @@ public class PesquisarFuncionario extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(rootPane, "Numero de CPF Inválido.");
         } else {
             try {
-                popularTabela(null, "todos");
+                popularTabela(null, "Ativos");
             } catch (Exception ex) {
                 Logger.getLogger(PesquisarCliente.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -362,12 +370,17 @@ public class PesquisarFuncionario extends javax.swing.JInternalFrame {
 
                 if (resposta == null) {
                     JOptionPane.showMessageDialog(null, "Funcionario excluido com sucesso.");
+                    try {
+                        popularTabela(null, "Ativos");
+                    } catch (Exception ex) {
+                        Logger.getLogger(PesquisarFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 } else {
                     JOptionPane.showMessageDialog(null, resposta);
                 }
 
                 try {
-                    popularTabela(null, "todos");
+                    popularTabela(null, "Ativos");
                 } catch (Exception ex) {
                     Logger.getLogger(PesquisarCliente.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -425,6 +438,12 @@ public class PesquisarFuncionario extends javax.swing.JInternalFrame {
         } else if (tipoPesquisa.equals("Negativos")) {
             try {
                 popularTabela(null, "Negativos");
+            } catch (Exception ex) {
+                Logger.getLogger(PesquisarFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else if (tipoPesquisa.equals("Todos")) {
+            try {
+                popularTabela(null, "todos");
             } catch (Exception ex) {
                 Logger.getLogger(PesquisarFuncionario.class.getName()).log(Level.SEVERE, null, ex);
             }
