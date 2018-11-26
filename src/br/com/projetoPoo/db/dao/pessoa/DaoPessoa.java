@@ -25,6 +25,8 @@ import java.util.logging.Logger;
  */
 public class DaoPessoa implements CRUD {
 
+    
+    
     @Override
     public List<Object> listar() {
         return null;
@@ -183,11 +185,12 @@ public class DaoPessoa implements CRUD {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         try {
+            String sql = null;
             if (isClient) {
-            String sql = "UPDATE Cliente SET disponivel=?\n"
+                sql = "UPDATE Cliente SET disponivel=?\n"
                     + "WHERE (cpf = ?)";
             }else {
-                String sql = "UPDATE Funcionario SET disponivel=?\n"
+                sql = "UPDATE Funcionario SET disponivel=?\n"
                     + "WHERE (cpf = ?)";
             }
             connection = ConnectionUtils.getConnection();

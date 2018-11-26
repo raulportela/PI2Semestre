@@ -15,7 +15,7 @@ import java.util.List;
  */
 public interface CRUD {
     
-    public String inserir(Cliente cliente, Funcionario funcionario);
+   public String inserir(Cliente cliente, Funcionario funcionario);
     
     public String atualizar(Cliente cliente, Funcionario funcionario);
     
