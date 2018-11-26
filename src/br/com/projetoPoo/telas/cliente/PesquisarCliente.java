@@ -35,7 +35,7 @@ public class PesquisarCliente extends javax.swing.JInternalFrame {
 
         List<Cliente> listaClientes = null;
         try {
-            if (ativos.equals(null)) {
+            if (ativos == null) {
                 listaClientes = ServicoCliente.listar();
             } else if (ativos.equals("Ativos")) {
                 listaClientes = ServicoCliente.listarPorStatus(true);
@@ -277,6 +277,8 @@ public class PesquisarCliente extends javax.swing.JInternalFrame {
 
     private void buttonPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPesquisaActionPerformed
         if (fieldCpf.getText() != null && !fieldCpf.getText().equals("")) {
+            
+            
             try {
                 String cpf = "";
                 cpf += fieldCpf.getText().substring(0, 3)
@@ -400,9 +402,9 @@ public class PesquisarCliente extends javax.swing.JInternalFrame {
 
         String tipoPesquisa = (String) boxTipoPesquisa.getSelectedItem();
         if (tipoPesquisa.equals("Cpf")) {
-            lblCpfPesquisa.setVisible(false);
-            fieldCpf.setVisible(false);
-            buttonPesquisa.setVisible(false);
+            lblCpfPesquisa.setVisible(true);
+            fieldCpf.setVisible(true);
+            buttonPesquisa.setVisible(true);
 
             lblTipoPesquisa.setVisible(false);
             boxTipoPesquisa.setVisible(false);

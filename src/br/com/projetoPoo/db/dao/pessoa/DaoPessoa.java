@@ -85,7 +85,7 @@ public class DaoPessoa {
                 cliente.setNome(result.getString("nome"));
                 cliente.setSobrenome(result.getString("sobrenome"));
                 cliente.setCpf(result.getString("cpf"));
-                cliente.setDataNascimento(result.getString("dataNascimeinto"));
+                cliente.setDataNascimento(result.getString("dataNascimento"));
                 cliente.setStatus(result.getBoolean("disponivel"));
                 cliente.setCodCliente(result.getInt("id"));
 
@@ -158,7 +158,7 @@ public class DaoPessoa {
             cliente.setNome(result.getString("nome"));
             cliente.setSobrenome(result.getString("sobrenome"));
             cliente.setCpf(result.getString("cpf"));
-            cliente.setDataNascimento(result.getString("dataNascimeinto"));
+            cliente.setDataNascimento(result.getString("dataNascimento"));
             cliente.setStatus(result.getBoolean("disponivel"));
             cliente.setCodCliente(result.getInt("id"));
 
@@ -194,7 +194,7 @@ public class DaoPessoa {
                 funcionario.setNome(result.getString("nome"));
                 funcionario.setSobrenome(result.getString("sobrenome"));
                 funcionario.setCpf(result.getString("cpf"));
-                funcionario.setDataNascimento(result.getString("dataNascimeinto"));
+                funcionario.setDataNascimento(result.getString("dataNascimento"));
                 funcionario.setStatus(result.getBoolean("disponivel"));
                 funcionario.setCodFuncionario(result.getInt("id"));
                 funcionario.setUsuario(result.getString("nomeUsuario"));
@@ -233,7 +233,7 @@ public class DaoPessoa {
                 cliente.setNome(result.getString("nome"));
                 cliente.setSobrenome(result.getString("sobrenome"));
                 cliente.setCpf(result.getString("cpf"));
-                cliente.setDataNascimento(result.getString("dataNascimeinto"));
+                cliente.setDataNascimento(result.getString("dataNascimento"));
                 cliente.setStatus(result.getBoolean("disponivel"));
                 cliente.setCodCliente(result.getInt("id"));
 
@@ -340,11 +340,7 @@ public class DaoPessoa {
             preparedStatement.setString(1, pessoa.getNome());
             preparedStatement.setString(2, pessoa.getSobrenome());
             preparedStatement.setString(3, pessoa.getCpf());
-            // Precisar arruamr um jeitto para colcor a data certa
-            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-		
-            
-            preparedStatement.setTimestamp(4, timestamp);
+            preparedStatement.setString(4, pessoa.getDataNascimento());
             preparedStatement.execute();
 
             int chavePessoa = 0;
