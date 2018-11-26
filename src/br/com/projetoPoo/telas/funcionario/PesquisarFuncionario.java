@@ -30,7 +30,7 @@ public class PesquisarFuncionario extends javax.swing.JInternalFrame {
      */
     public PesquisarFuncionario() throws Exception {
         initComponents();
-        popularTabela(null, null);
+        popularTabela(null, "todos");
         lblCpfPesquisa.setVisible(false);
         fieldCpf.setVisible(false);
         buttonPesquisa.setVisible(false);
@@ -227,12 +227,19 @@ public class PesquisarFuncionario extends javax.swing.JInternalFrame {
 
         List<Funcionario> listaFuncionarios = null;
         try {
-            if(ativos.equals(null)){
-            listaFuncionarios = ServicoFuncionario.listar();
-            }else if (ativos.equals("Ativos")){
-                listaFuncionarios = ServicoFuncionario.listarPorStatus(true);
-            }else if (ativos.equals("Negativos")){
-                listaFuncionarios = ServicoFuncionario.listarPorStatus(false);
+            switch (ativos) {
+                case "todos":
+                    listaFuncionarios = ServicoFuncionario.listar();
+                    break;
+                case "Ativos":
+                    listaFuncionarios = ServicoFuncionario.listarPorStatus(true);
+                    break;
+                case "Negativos":
+                    listaFuncionarios = ServicoFuncionario.listarPorStatus(false);
+                    break;
+                default:
+                    listaFuncionarios = ServicoFuncionario.listar();
+                    break;
             }
         } catch (Exception ex) {
             Logger.getLogger(PesquisarCliente.class.getName()).log(Level.SEVERE, null, ex);
@@ -248,7 +255,8 @@ public class PesquisarFuncionario extends javax.swing.JInternalFrame {
             dados[1] = funcionario.getNome() + " " + funcionario.getSobrenome();
             dados[2] = funcionario.getCpf();
             dados[3] = funcionario.getDataNascimento();
-            dados[4] = funcionario.getUsuario();
+            dados[4] = funcionario.getRg();
+            dados[5] = funcionario.getUsuario();
 
             dtmClientes.addRow(dados);
         } else {
@@ -260,7 +268,8 @@ public class PesquisarFuncionario extends javax.swing.JInternalFrame {
                 dados[1] = funcionario.getNome() + " " + funcionario.getSobrenome();
                 dados[2] = funcionario.getCpf();
                 dados[3] = funcionario.getDataNascimento();
-                dados[4] = funcionario.getUsuario();
+                dados[4] = funcionario.getRg();
+                dados[5] = funcionario.getUsuario();
 
                 dtmClientes.addRow(dados);
                 contadorPosicao++;
@@ -276,13 +285,20 @@ public class PesquisarFuncionario extends javax.swing.JInternalFrame {
                         + fieldCpf.getText().substring(4, 7)
                         + fieldCpf.getText().substring(8, 11)
                         + fieldCpf.getText().substring(12, 14);
-                popularTabela(cpf, null);
+                popularTabela(cpf, "todos");
             } catch (Exception ex) {
                 Logger.getLogger(PesquisarFuncionario.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else if (fieldCpf.getText().equals("")) {
             try {
-                popularTabela(null, null);
+                popularTabela(null, "todos");
+                lblCpfPesquisa.setVisible(false);
+                fieldCpf.setVisible(false);
+                buttonPesquisa.setVisible(false);
+
+                lblTipoPesquisa.setVisible(true);
+                boxTipoPesquisa.setVisible(true);
+                buttonTipoPesquisa.setVisible(true);
             } catch (Exception ex) {
                 Logger.getLogger(PesquisarCliente.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -290,7 +306,7 @@ public class PesquisarFuncionario extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(rootPane, "Numero de CPF Inválido.");
         } else {
             try {
-                popularTabela(null, null);
+                popularTabela(null, "todos");
             } catch (Exception ex) {
                 Logger.getLogger(PesquisarCliente.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -328,6 +344,7 @@ public class PesquisarFuncionario extends javax.swing.JInternalFrame {
         } catch (Exception ex) {
             Logger.getLogger(PesquisarCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
+
         this.dispose();
     }//GEN-LAST:event_buttonAlterarActionPerformed
 
@@ -350,7 +367,7 @@ public class PesquisarFuncionario extends javax.swing.JInternalFrame {
                 }
 
                 try {
-                    popularTabela(null, null);
+                    popularTabela(null, "todos");
                 } catch (Exception ex) {
                     Logger.getLogger(PesquisarCliente.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -392,20 +409,20 @@ public class PesquisarFuncionario extends javax.swing.JInternalFrame {
     private void buttonTipoPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTipoPesquisaActionPerformed
         String tipoPesquisa = (String) boxTipoPesquisa.getSelectedItem();
         if (tipoPesquisa.equals("Cpf")) {
-            lblCpfPesquisa.setVisible(false);
-            fieldCpf.setVisible(false);
-            buttonPesquisa.setVisible(false);
-            
+            lblCpfPesquisa.setVisible(true);
+            fieldCpf.setVisible(true);
+            buttonPesquisa.setVisible(true);
+
             lblTipoPesquisa.setVisible(false);
             boxTipoPesquisa.setVisible(false);
             buttonTipoPesquisa.setVisible(false);
-        }else if(tipoPesquisa.equals("Ativos")){
+        } else if (tipoPesquisa.equals("Ativos")) {
             try {
                 popularTabela(null, "Ativos");
             } catch (Exception ex) {
                 Logger.getLogger(PesquisarFuncionario.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }else if(tipoPesquisa.equals("Negativos")){
+        } else if (tipoPesquisa.equals("Negativos")) {
             try {
                 popularTabela(null, "Negativos");
             } catch (Exception ex) {

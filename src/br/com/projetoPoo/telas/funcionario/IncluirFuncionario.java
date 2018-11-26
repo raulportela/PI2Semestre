@@ -66,6 +66,24 @@ public class IncluirFuncionario extends javax.swing.JInternalFrame {
         fieldSenha = new javax.swing.JPasswordField();
         comboCargo = new javax.swing.JComboBox<>();
 
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameOpened(evt);
+            }
+        });
+
         painelFuncionario.setBackground(new java.awt.Color(240, 240, 255));
 
         lblNome.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
@@ -393,6 +411,29 @@ public class IncluirFuncionario extends javax.swing.JInternalFrame {
             fieldNome.setBorder(new LineBorder(Color.RED));
         }
     }//GEN-LAST:event_fieldNomeFocusLost
+
+    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
+        if (modoEdicao && funcionario != null) {
+
+            //Para atribuir valores para campos de texto, utilizamos o
+            //método setText(valor_a_ser_atribuído)
+            fieldNome.setText(funcionario.getNome());
+            fieldSobrenome.setText(funcionario.getSobrenome());
+            fieldCpf.setText(funcionario.getCpf());
+            fieldData.setText(funcionario.getDataNascimento());
+            fieldRg.setText(funcionario.getRg());
+            fieldRg.setText(funcionario.getRg());
+
+            for (int i = 0; i < comboCargo.getItemCount(); i++) {
+                if (comboCargo.getItemAt(i).equals(funcionario.getCargo())) {
+                    comboCargo.setSelectedIndex(i);
+                    break;
+                }
+            }
+            fieldUsuario.setText(funcionario.getUsuario());
+            fieldSenha.setText(funcionario.getSenha());
+        }
+    }//GEN-LAST:event_formInternalFrameOpened
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

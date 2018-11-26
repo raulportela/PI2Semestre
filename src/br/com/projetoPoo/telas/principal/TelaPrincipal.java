@@ -7,6 +7,8 @@ package br.com.projetoPoo.telas.principal;
 
 import br.com.projetoPoo.telas.cliente.IncluirCliente;
 import br.com.projetoPoo.telas.cliente.PesquisarCliente;
+import br.com.projetoPoo.telas.funcionario.IncluirFuncionario;
+import br.com.projetoPoo.telas.funcionario.PesquisarFuncionario;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -23,8 +25,10 @@ import javax.swing.JInternalFrame;
 public class TelaPrincipal extends javax.swing.JFrame {
 
             //TELA CLIENTE
-    private IncluirCliente cadastroCliente = null;
+    private IncluirCliente incluirCliente = null;
     private PesquisarCliente telaPesquisarCliente = null;
+    private IncluirFuncionario telaIncluirFuncionario = null;
+    private PesquisarFuncionario telaPesquisarFuncionario = null;
     
     /**
      * Creates new form principal
@@ -38,11 +42,27 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
     
     public IncluirCliente getCadastroCliente(){
-        return cadastroCliente;
+        return incluirCliente;
     }
     
     public void setCasdastroCliente (IncluirCliente cadastroCliente){
-        this.cadastroCliente =cadastroCliente;
+        this.incluirCliente =cadastroCliente;
+    }
+    
+    public IncluirFuncionario getIncluirFuncionario(){
+        return telaIncluirFuncionario;
+    }
+    
+    public void setIncluirFuncionario (IncluirFuncionario incluirFuncionario){
+        this.telaIncluirFuncionario =incluirFuncionario;
+    }
+    
+    public PesquisarFuncionario getPesquisarFuncionario(){
+        return telaPesquisarFuncionario;
+    }
+    
+    public void setPesquisarFuncionario (PesquisarFuncionario pesquisarFuncionario){
+        this.telaPesquisarFuncionario =pesquisarFuncionario;
     }
     
 
@@ -75,6 +95,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menuCliente = new javax.swing.JMenu();
         menuCadastrarCliente = new javax.swing.JMenuItem();
         menuConsultarCliente = new javax.swing.JMenuItem();
+        menuCliente1 = new javax.swing.JMenu();
+        menuCadastrarCliente1 = new javax.swing.JMenuItem();
+        menuConsultarCliente1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Floricultura");
@@ -85,7 +108,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         menuCliente.setText("Cliente");
 
-        menuCadastrarCliente.setText("Cadastrar Cliente");
+        menuCadastrarCliente.setText("Cadastrar ");
         menuCadastrarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuCadastrarClienteActionPerformed(evt);
@@ -93,7 +116,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         menuCliente.add(menuCadastrarCliente);
 
-        menuConsultarCliente.setText("Consultar Clientes");
+        menuConsultarCliente.setText("Consultar");
         menuConsultarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuConsultarClienteActionPerformed(evt);
@@ -102,6 +125,26 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menuCliente.add(menuConsultarCliente);
 
         barraMenus.add(menuCliente);
+
+        menuCliente1.setText("Funcionario");
+
+        menuCadastrarCliente1.setText("Cadastrar");
+        menuCadastrarCliente1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCadastrarCliente1ActionPerformed(evt);
+            }
+        });
+        menuCliente1.add(menuCadastrarCliente1);
+
+        menuConsultarCliente1.setText("Consultar");
+        menuConsultarCliente1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuConsultarCliente1ActionPerformed(evt);
+            }
+        });
+        menuCliente1.add(menuConsultarCliente1);
+
+        barraMenus.add(menuCliente1);
 
         setJMenuBar(barraMenus);
 
@@ -113,7 +156,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, 530, Short.MAX_VALUE)
+            .addComponent(desktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, 532, Short.MAX_VALUE)
         );
 
         pack();
@@ -121,8 +164,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void menuCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadastrarClienteActionPerformed
            //TELA DE INCLUIR CLIENTE  "CadastroCliente"
-       if(getCadastroCliente() == null || !cadastroCliente.isDisplayable()){
-            cadastroCliente = new IncluirCliente();
+       if(getCadastroCliente() == null || !incluirCliente.isDisplayable()){
+            incluirCliente = new IncluirCliente();
             desktopPane.add(getCadastroCliente());
             this.openFrameInCenter (getCadastroCliente());
         }
@@ -145,6 +188,32 @@ public class TelaPrincipal extends javax.swing.JFrame {
         telaPesquisarCliente.toFront ();
              
     }//GEN-LAST:event_menuConsultarClienteActionPerformed
+
+    private void menuCadastrarCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadastrarCliente1ActionPerformed
+        if(getIncluirFuncionario()== null || !telaIncluirFuncionario.isDisplayable()){
+            telaIncluirFuncionario = new IncluirFuncionario();
+            desktopPane.add(getIncluirFuncionario());
+            this.openFrameInCenter (getIncluirFuncionario());
+        }
+        getIncluirFuncionario().toFront();
+
+    }//GEN-LAST:event_menuCadastrarCliente1ActionPerformed
+
+    private void menuConsultarCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultarCliente1ActionPerformed
+        
+        // TELA DE PESQUISAR CLIENTE "TelaPesquisarCliente"
+        if (telaPesquisarFuncionario == null || !telaPesquisarFuncionario.isDisplayable()){
+            try {
+                telaPesquisarFuncionario = new PesquisarFuncionario();
+            } catch (Exception ex) {
+                Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            desktopPane.add(telaPesquisarFuncionario);
+            this.openFrameInCenter (telaPesquisarFuncionario);
+        }
+        telaPesquisarFuncionario.toFront ();
+
+    }//GEN-LAST:event_menuConsultarCliente1ActionPerformed
 
     public void openFrameInCenter(JInternalFrame jif) {
 
@@ -202,8 +271,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar barraMenus;
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenuItem menuCadastrarCliente;
+    private javax.swing.JMenuItem menuCadastrarCliente1;
     private javax.swing.JMenu menuCliente;
+    private javax.swing.JMenu menuCliente1;
     private javax.swing.JMenuItem menuConsultarCliente;
+    private javax.swing.JMenuItem menuConsultarCliente1;
     // End of variables declaration//GEN-END:variables
 
     /**
