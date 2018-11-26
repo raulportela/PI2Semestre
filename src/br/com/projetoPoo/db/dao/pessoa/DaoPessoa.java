@@ -24,8 +24,77 @@ import java.util.logging.Logger;
  */
 public class DaoPessoa {
 
-    public List<Object> listar() {
+        public List<Funcionario> listarFuncionario() {
+
+        String sql = "SELECT * FROM PESSOA P\n"
+                + "JOIN FUNCIONARIO F\n"
+                + "ON P.ID = F.IDPESSOA";
+
+        ArrayList<Funcionario> listaFuncionario = new ArrayList<>();
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet result = null;
+        try {
+            connection = ConnectionUtils.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
+
+            result = preparedStatement.executeQuery();
+
+            while (result.next()) {
+                Funcionario funcionario = new Funcionario();
+                funcionario.setNome(result.getString("nome"));
+                funcionario.setSobrenome(result.getString("sobrenome"));
+                funcionario.setCpf(result.getString("cpf"));
+                funcionario.setDataNascimento(result.getString("dataNascimeinto"));
+                funcionario.setStatus(result.getBoolean("disponivel"));
+                funcionario.setCodFuncionario(result.getInt("id"));
+                funcionario.setUsuario(result.getString("nomeUsuario"));
+                funcionario.setSenha(result.getString("senha"));
+                funcionario.setCargo(result.getString("cargo"));
+
+                listaFuncionario.add(funcionario);
+            }
+            return listaFuncionario;
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoPessoa.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return null;
+    }
+
+    
+    public List<Cliente> listarClientes() {
+        String sql = "SELECT * FROM PESSOA P\n"
+                + "JOIN CLIENTE C\n"
+                + "ON P.ID = C.IDPESSOA";
+
+        ArrayList<Cliente> listaClientes = new ArrayList<>();
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet result = null;
+        try {
+            connection = ConnectionUtils.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
+
+            result = preparedStatement.executeQuery();
+
+            while (result.next()) {
+                Cliente cliente = new Cliente();
+                cliente.setNome(result.getString("nome"));
+                cliente.setSobrenome(result.getString("sobrenome"));
+                cliente.setCpf(result.getString("cpf"));
+                cliente.setDataNascimento(result.getString("dataNascimeinto"));
+                cliente.setStatus(result.getBoolean("disponivel"));
+                cliente.setCodCliente(result.getInt("id"));
+
+                listaClientes.add(cliente);
+            }
+            return listaClientes;
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoPessoa.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return null;
+
     }
 
     public Object obterUm() {
@@ -35,9 +104,9 @@ public class DaoPessoa {
     public List<Funcionario> listarFuncionarioPorStatus(boolean status) {
 
         String sql = "SELECT * FROM PESSOA P\n"
-                + "JOIN FUNCIONARIO C\n"
-                + "ON P.ID = C.IDPESSOA\n"
-                + "WHERE (C.DISPONIVEL=?)";
+                + "JOIN FUNCIONARIO F\n"
+                + "ON P.ID = F.IDPESSOA\n"
+                + "WHERE (F.DISPONIVEL=?)";
 
         ArrayList<Funcionario> listaFuncionario = new ArrayList<>();
         Connection connection = null;
@@ -104,6 +173,7 @@ public class DaoPessoa {
         } catch (SQLException ex) {
             Logger.getLogger(DaoPessoa.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         return null;
 
     }

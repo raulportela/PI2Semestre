@@ -5,12 +5,27 @@
  */
 package br.com.projetoPoo.telas.funcionario;
 
+import br.com.projetoPoo.model.pessoa.funcionario.Funcionario;
+import java.awt.Color;
+import javax.swing.JOptionPane;
+import javax.swing.border.LineBorder;
+
 /**
  *
  * @author Raul de Paula
  */
 public class IncluirFuncionario extends javax.swing.JInternalFrame {
+    
+    private boolean modoEdicao;
+    private Funcionario funcionario;
+    public boolean isModoEdicao() {
+        return modoEdicao;
+    }
 
+    public void setModoEdicao(boolean modoEdicao) {
+        this.modoEdicao = modoEdicao;
+    }
+    
     /**
      * Creates new form IncluirFuncionario
      */
@@ -42,11 +57,11 @@ public class IncluirFuncionario extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel5 = new javax.swing.JLabel();
+        fieldSenha = new javax.swing.JPasswordField();
+        lblRg = new javax.swing.JLabel();
+        fieldRg = new javax.swing.JTextField();
+        comboCargo = new javax.swing.JComboBox<>();
+        lblCargo = new javax.swing.JLabel();
 
         painelCliente.setBackground(new java.awt.Color(240, 240, 255));
 
@@ -129,13 +144,11 @@ public class IncluirFuncionario extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Senha*");
 
-        jLabel4.setText("RG");
+        lblRg.setText("RG");
 
-        jTextField2.setText("jTextField2");
+        comboCargo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "Gerente", "Peão" }));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "Gerente", "Peão" }));
-
-        jLabel5.setText("Cargo");
+        lblCargo.setText("Cargo");
 
         javax.swing.GroupLayout painelClienteLayout = new javax.swing.GroupLayout(painelCliente);
         painelCliente.setLayout(painelClienteLayout);
@@ -173,14 +186,14 @@ public class IncluirFuncionario extends javax.swing.JInternalFrame {
                                 .addComponent(lblSobrenome))
                             .addComponent(jLabel1)
                             .addGroup(painelClienteLayout.createSequentialGroup()
-                                .addComponent(jLabel4)
+                                .addComponent(lblRg)
                                 .addGap(171, 171, 171)
-                                .addComponent(jLabel5)))
+                                .addComponent(lblCargo)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(painelClienteLayout.createSequentialGroup()
-                        .addComponent(jTextField2)
+                        .addComponent(fieldRg)
                         .addGap(6, 6, 6)
-                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(comboCargo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(painelClienteLayout.createSequentialGroup()
                         .addGroup(painelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -190,7 +203,7 @@ public class IncluirFuncionario extends javax.swing.JInternalFrame {
                             .addGroup(painelClienteLayout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jPasswordField1))))
+                            .addComponent(fieldSenha))))
                 .addContainerGap())
         );
         painelClienteLayout.setVerticalGroup(
@@ -218,12 +231,12 @@ public class IncluirFuncionario extends javax.swing.JInternalFrame {
                         .addComponent(fieldData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(painelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5))
+                    .addComponent(lblRg)
+                    .addComponent(lblCargo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(painelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldRg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(painelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -231,7 +244,7 @@ public class IncluirFuncionario extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(painelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(painelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(buttonSalvar)
@@ -268,34 +281,20 @@ public class IncluirFuncionario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_fieldSobrenomeFocusLost
 
     private void buttonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvarActionPerformed
+        
         if (!modoEdicao) {
-            cliente = new Cliente();
-        } else if (cliente == null) {
+            
+        } else if (funcionario == null) {
             JOptionPane.showMessageDialog(rootPane, "Não foi pré selecionado um cliente"
                 + " para realizar alterações");
             return;
         }
-        cliente.setStatusCliente(true);
-        cliente.setNome(fieldNome.getText().trim().toUpperCase());
-        cliente.setSobrenome(fieldSobrenome.getText().trim().toUpperCase());
-        cliente.setCpf(fieldCpf.getText());
-        cliente.setRg(fieldRG.getText().trim().toUpperCase());
-        cliente.setSexo((String) boxGenero.getSelectedItem());
-        cliente.setEstadoCivil((String) boxEstadoCivil.getSelectedItem());
-        cliente.setDataNascimento(fieldData.getText());
-        cliente.setUfNascimento((String) boxUFNasc.getSelectedItem());
-        cliente.setEstadoNascimento((String) boxEstadoNasc.getSelectedItem());
-        cliente.setTelefone(fieldTelFixo.getText());
-        cliente.setCelular(fieldCelular.getText());
-        cliente.setOutroContato(fieldOutroContato.getText());
-        cliente.setEmail(fieldEmail.getText().trim().toUpperCase());
-        cliente.setCep(fieldCep.getText());
-        cliente.setRua(fieldRua.getText().trim().toUpperCase());
-        cliente.setNumero(fieldNumero.getText());
-        cliente.setBairro(fieldBairro.getText().trim().toUpperCase());
-        cliente.setComplemento(fieldComplemento.getText().trim().toUpperCase());
-        cliente.setUf((String) boxUF.getSelectedItem());
-        cliente.setEstado((String) boxEstado.getSelectedItem());
+        
+        funcionario.setNome(fieldNome.getText().trim().toUpperCase());
+        funcionario.setSobrenome(fieldSobrenome.getText().trim().toUpperCase());
+        funcionario.setCpf(fieldCpf.getText());
+        funcionario.setRg(fieldRG.getText().trim().toUpperCase());
+        funcionario.setDataNascimento(fieldData.getText());
 
         String resposta = null;
         if (!modoEdicao) {
@@ -395,22 +394,22 @@ public class IncluirFuncionario extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonCancelar;
     private javax.swing.JButton buttonSalvar;
+    private javax.swing.JComboBox<String> comboCargo;
     private javax.swing.JTextField fieldCpf;
     private javax.swing.JTextField fieldData;
     private javax.swing.JTextField fieldNome;
+    private javax.swing.JTextField fieldRg;
+    private javax.swing.JPasswordField fieldSenha;
     private javax.swing.JTextField fieldSobrenome;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel lblCPF;
+    private javax.swing.JLabel lblCargo;
     private javax.swing.JLabel lblDtNasc;
     private javax.swing.JLabel lblNome;
+    private javax.swing.JLabel lblRg;
     private javax.swing.JLabel lblSobrenome;
     private javax.swing.JPanel painelCliente;
     // End of variables declaration//GEN-END:variables
