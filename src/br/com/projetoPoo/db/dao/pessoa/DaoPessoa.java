@@ -78,7 +78,7 @@ public class DaoPessoa {
                 + "ON P.ID = C.IDPESSOA\n"
                 + "WHERE (C.DISPONIVEL=?)";
 
-        ArrayList<Cliente> listaCliente = new ArrayList<>();
+        ArrayList<Cliente> listaClientes = new ArrayList<>();
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet result = null;
@@ -98,7 +98,7 @@ public class DaoPessoa {
                 cliente.setStatus(result.getBoolean("disponivel"));
                 cliente.setCodCliente(result.getInt("id"));
 
-                listaCliente.add(cliente);
+                listaClientes.add(cliente);
             }
             return listaClientes;
         } catch (SQLException ex) {
