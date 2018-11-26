@@ -18,9 +18,10 @@ import javax.swing.border.LineBorder;
  * @author Raul de Paula
  */
 public class IncluirFuncionario extends javax.swing.JInternalFrame {
-    
+
     private boolean modoEdicao;
     private Funcionario funcionario;
+
     public boolean isModoEdicao() {
         return modoEdicao;
     }
@@ -28,7 +29,7 @@ public class IncluirFuncionario extends javax.swing.JInternalFrame {
     public void setModoEdicao(boolean modoEdicao) {
         this.modoEdicao = modoEdicao;
     }
-    
+
     /**
      * Creates new form IncluirFuncionario
      */
@@ -302,24 +303,19 @@ public class IncluirFuncionario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_fieldSobrenomeFocusLost
 
     private void buttonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvarActionPerformed
-        
+
         if (!modoEdicao) {
-            
+
         } else if (getFuncionario() == null) {
             JOptionPane.showMessageDialog(rootPane, "Não foi pré selecionado um funcionario"
-                + " para realizar alterações");
+                    + " para realizar alterações");
             return;
         }
         funcionario = new Funcionario();
         getFuncionario().setNome(fieldNome.getText().trim().toUpperCase());
         getFuncionario().setSobrenome(fieldSobrenome.getText().trim().toUpperCase());
         getFuncionario().setCpf(fieldCpf.getText());
-        Funcionario statusFuncionario = ServicoFuncionario.obterUm(funcionario.getCpf());
-        if (statusFuncionario.isStatus()) {
-            funcionario.setStatus(true);
-        }else{
-            funcionario.setStatus(!true);
-        }
+        getFuncionario().setStatus(true);
         getFuncionario().setRg(fieldRg.getText().trim().toUpperCase());
         getFuncionario().setDataNascimento(fieldData.getText());
         getFuncionario().setUsuario(fieldUsuario.getText());
@@ -355,13 +351,13 @@ public class IncluirFuncionario extends javax.swing.JInternalFrame {
     private void fieldCpfFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fieldCpfFocusGained
         if (fieldCpf.getText() != null && fieldCpf.getText().length() == 14) {
             String cpf = fieldCpf.getText().substring(0, 3)
-            + fieldCpf.getText().substring(4, 7)
-            + fieldCpf.getText().substring(8, 11)
-            + fieldCpf.getText().substring(12, 14);
+                    + fieldCpf.getText().substring(4, 7)
+                    + fieldCpf.getText().substring(8, 11)
+                    + fieldCpf.getText().substring(12, 14);
             fieldCpf.setBorder(new LineBorder(Color.LIGHT_GRAY));
         } else if (fieldCpf.getText() != null && (fieldCpf.getText().length() < 14
-            || fieldCpf.getText().length() > 14)) {
-        fieldCpf.setBorder(new LineBorder(Color.LIGHT_GRAY));
+                || fieldCpf.getText().length() > 14)) {
+            fieldCpf.setBorder(new LineBorder(Color.LIGHT_GRAY));
         }
     }//GEN-LAST:event_fieldCpfFocusGained
 
@@ -375,8 +371,8 @@ public class IncluirFuncionario extends javax.swing.JInternalFrame {
             CpfS += CPF.substring(9, 11);
             fieldCpf.setText(CpfS);
         } else if (fieldCpf.getText() != null && (fieldCpf.getText().length() != 11
-            && fieldCpf.getText().length() != 14)) {
-        fieldCpf.setBorder(new LineBorder(Color.RED));
+                && fieldCpf.getText().length() != 14)) {
+            fieldCpf.setBorder(new LineBorder(Color.RED));
         }
     }//GEN-LAST:event_fieldCpfFocusLost
 
@@ -399,8 +395,8 @@ public class IncluirFuncionario extends javax.swing.JInternalFrame {
             dataS += fieldData.getText().substring(4, 8);
             fieldData.setText(dataS);
         } else if (fieldData.getText() != null && (fieldData.getText().length() != 8
-            && fieldData.getText().length() != 10)) {
-        fieldData.setBorder(new LineBorder(Color.RED));
+                && fieldData.getText().length() != 10)) {
+            fieldData.setBorder(new LineBorder(Color.RED));
         }
     }//GEN-LAST:event_fieldDataFocusLost
 
