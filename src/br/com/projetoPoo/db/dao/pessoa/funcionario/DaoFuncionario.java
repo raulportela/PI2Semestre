@@ -5,7 +5,6 @@
  */
 package br.com.projetoPoo.db.dao.pessoa.funcionario;
 
-import br.com.projetoPoo.interfaces.CRUD;
 import br.com.projetoPoo.model.pessoa.cliente.Cliente;
 import br.com.projetoPoo.model.pessoa.funcionario.Funcionario;
 import java.util.List;
@@ -14,7 +13,7 @@ import java.util.List;
  *
  * @author Raul de Paula
  */
-public class DaoFuncionario implements CRUD {
+public class DaoFuncionario {
 
     public String inserir(Cliente cliente, Funcionario Funcionario) {
         return null;

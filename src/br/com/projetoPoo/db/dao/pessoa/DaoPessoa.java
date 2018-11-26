@@ -31,8 +31,28 @@ public class DaoPessoa{
         return null;
     }
 
-    public String listarPorStatus() {
+    public List<Object> listarPorStatus() {
         
+        String sql = "SELECT * FROM PESSOA P\n"
+                + "JOIN CLIENTE C\n"
+                + "ON P.ID = C.IDPESSOA\n"
+                + "JOIN CONTATO CT\n"
+                + "ON P.ID = CT.IDPESSOA\n"
+                + "JOIN ENDERECO E\n"
+                + "ON P.ID = E.IDPESSOA\n"
+                + "WHERE (C.DISPONIVEL=?)";
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet result = null;
+        try {
+            connection = ConnectionUtils.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setBoolean(1, true);
+
+            result = preparedStatement.executeQuery();
+
+            while (result.next()) {
         
         return null;
     }
