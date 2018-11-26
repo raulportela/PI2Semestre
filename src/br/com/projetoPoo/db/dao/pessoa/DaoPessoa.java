@@ -156,6 +156,8 @@ public class DaoPessoa {
             preparedStatement.setString(1, cpf);
 
             result = preparedStatement.executeQuery();
+            
+
             while (result.next()) {
                 Cliente cliente = new Cliente();
                 cliente.setNome(result.getString("nome"));
@@ -345,10 +347,10 @@ public class DaoPessoa {
 
             preparedStatement.setString(1, pessoa.getNome());
             preparedStatement.setString(2, pessoa.getSobrenome());
-            String cpf = funcionario.getCpf().substring(0, 3)
-                    + funcionario.getCpf().substring(4, 7)
-                    + funcionario.getCpf().substring(8, 11)
-                    + funcionario.getCpf().substring(12, 14);
+            String cpf = pessoa.getCpf().substring(0, 3)
+                    + pessoa.getCpf().substring(4, 7)
+                    + pessoa.getCpf().substring(8, 11)
+                    + pessoa.getCpf().substring(12, 14);
 
             preparedStatement.setString(3, cpf);
             preparedStatement.setString(4, pessoa.getDataNascimento());
@@ -401,7 +403,7 @@ public class DaoPessoa {
             String sql = null;
             if (isClient) {
                 sql = "UPDATE Cliente SET disponivel=?\n"
-                        + "WHERE (id = (SELECT id FROM Pessoa WHERE cpf=?))";
+                        + "WHERE (idPessoa = (SELECT id FROM Pessoa WHERE cpf=?))";
                 connection = ConnectionUtils.getConnection();
                 preparedStatement = connection.prepareStatement(sql);
 
@@ -411,7 +413,7 @@ public class DaoPessoa {
                 preparedStatement.execute();
             } else {
                 sql = "UPDATE Funcionario SET disponivel=?\n"
-                        + "WHERE (id = (SELECT id FROM Pessoa WHERE cpf=?))";
+                        + "WHERE (idPessoa = (SELECT id FROM Pessoa WHERE cpf=?))";
                 connection = ConnectionUtils.getConnection();
                 preparedStatement = connection.prepareStatement(sql);
 

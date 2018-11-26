@@ -7,7 +7,6 @@ package br.com.projetoPoo.telas.funcionario;
 
 import br.com.projetoPoo.model.pessoa.funcionario.Funcionario;
 import br.com.projetoPoo.servico.ServicoFuncionario;
-import br.com.projetoPoo.telas.cliente.IncluirCliente;
 import br.com.projetoPoo.telas.cliente.PesquisarCliente;
 import java.awt.Color;
 import java.util.List;
@@ -285,7 +284,7 @@ public class PesquisarFuncionario extends javax.swing.JInternalFrame {
                         + fieldCpf.getText().substring(4, 7)
                         + fieldCpf.getText().substring(8, 11)
                         + fieldCpf.getText().substring(12, 14);
-                popularTabela(cpf, "Ativos");
+                popularTabela(cpf, "todos");
                 lblCpfPesquisa.setVisible(false);
                 fieldCpf.setVisible(false);
                 buttonPesquisa.setVisible(false);

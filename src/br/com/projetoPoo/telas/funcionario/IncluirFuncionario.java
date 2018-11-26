@@ -434,6 +434,7 @@ public class IncluirFuncionario extends javax.swing.JInternalFrame {
             }
             fieldUsuario.setText(funcionario.getUsuario());
             fieldSenha.setText(funcionario.getSenha());
+            fieldCpf.setEditable(false);
         }
     }//GEN-LAST:event_formInternalFrameOpened
 
