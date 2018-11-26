@@ -118,7 +118,7 @@ public class DaoPessoa {
 
             result = preparedStatement.executeQuery();
             if (result.next()) {
-                
+
                 Funcionario funcionario = new Funcionario();
                 funcionario.setNome(result.getString("nome"));
                 funcionario.setSobrenome(result.getString("sobrenome"));
@@ -130,7 +130,7 @@ public class DaoPessoa {
                 funcionario.setUsuario(result.getString("nomeUsuario"));
                 funcionario.setSenha(result.getString("senha"));
                 funcionario.setCargo(result.getString("cargo"));
-                
+
                 return funcionario;
             }
             return null;
@@ -279,7 +279,7 @@ public class DaoPessoa {
             preparedStatement.setString(3, pessoa.getCpf());
             preparedStatement.setString(4, pessoa.getDataNascimento());
             preparedStatement.setString(5, pessoa.getCpf());
-            
+
             preparedStatement.execute();
             if (!preparedStatement.isClosed()) {
                 preparedStatement.close();
@@ -347,7 +347,12 @@ public class DaoPessoa {
 
             preparedStatement.setString(1, pessoa.getNome());
             preparedStatement.setString(2, pessoa.getSobrenome());
-            preparedStatement.setString(3, pessoa.getCpf());
+            String cpf = funcionario.getCpf().substring(0, 3)
+                    + funcionario.getCpf().substring(4, 7)
+                    + funcionario.getCpf().substring(8, 11)
+                    + funcionario.getCpf().substring(12, 14);
+
+            preparedStatement.setString(3, cpf);
             preparedStatement.setString(4, pessoa.getDataNascimento());
             preparedStatement.execute();
 
