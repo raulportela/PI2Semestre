@@ -158,17 +158,17 @@ public class DaoPessoa {
             preparedStatement.setString(1, cpf);
 
             result = preparedStatement.executeQuery();
+            while (result.next()) {
+                Cliente cliente = new Cliente();
+                cliente.setNome(result.getString("nome"));
+                cliente.setSobrenome(result.getString("sobrenome"));
+                cliente.setCpf(result.getString("cpf"));
+                cliente.setDataNascimento(result.getString("dataNascimento"));
+                cliente.setStatus(result.getBoolean("disponivel"));
+                cliente.setCodCliente(result.getInt("id"));
 
-            Cliente cliente = new Cliente();
-            cliente.setNome(result.getString("nome"));
-            cliente.setSobrenome(result.getString("sobrenome"));
-            cliente.setCpf(result.getString("cpf"));
-            cliente.setDataNascimento(result.getString("dataNascimento"));
-            cliente.setStatus(result.getBoolean("disponivel"));
-            cliente.setCodCliente(result.getInt("id"));
-
-            return cliente;
-
+                return cliente;
+            }
         } catch (SQLException ex) {
             Logger.getLogger(DaoPessoa.class.getName()).log(Level.SEVERE, null, ex);
         }

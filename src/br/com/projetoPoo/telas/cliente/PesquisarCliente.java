@@ -280,11 +280,7 @@ public class PesquisarCliente extends javax.swing.JInternalFrame {
             
             
             try {
-                String cpf = "";
-                cpf += fieldCpf.getText().substring(0, 3)
-                        + fieldCpf.getText().substring(4, 7)
-                        + fieldCpf.getText().substring(8, 11)
-                        + fieldCpf.getText().substring(12, 14);
+                String cpf = fieldCpf.getText();
                 popularTabela(cpf, null);
             } catch (Exception ex) {
                 Logger.getLogger(PesquisarCliente.class.getName()).log(Level.SEVERE, null, ex);
