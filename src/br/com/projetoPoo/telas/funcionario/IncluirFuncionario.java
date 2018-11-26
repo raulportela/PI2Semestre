@@ -47,21 +47,21 @@ public class IncluirFuncionario extends javax.swing.JInternalFrame {
         lblSobrenome = new javax.swing.JLabel();
         lblCPF = new javax.swing.JLabel();
         lblDtNasc = new javax.swing.JLabel();
-        fieldSobrenome = new javax.swing.JTextField();
+        lblUsuario = new javax.swing.JLabel();
+        lblSenha = new javax.swing.JLabel();
+        lblRg = new javax.swing.JLabel();
+        lblCargo = new javax.swing.JLabel();
+        lblCadastroFuncionario = new javax.swing.JLabel();
         buttonSalvar = new javax.swing.JButton();
         buttonCancelar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        fieldSobrenome = new javax.swing.JTextField();
         fieldCpf = new javax.swing.JTextField();
         fieldData = new javax.swing.JTextField();
         fieldNome = new javax.swing.JTextField();
-        lblUsuario = new javax.swing.JLabel();
         fieldUsuario = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        fieldSenha = new javax.swing.JPasswordField();
-        lblRg = new javax.swing.JLabel();
         fieldRg = new javax.swing.JTextField();
+        fieldSenha = new javax.swing.JPasswordField();
         comboCargo = new javax.swing.JComboBox<>();
-        lblCargo = new javax.swing.JLabel();
 
         painelCliente.setBackground(new java.awt.Color(240, 240, 255));
 
@@ -77,14 +77,16 @@ public class IncluirFuncionario extends javax.swing.JInternalFrame {
         lblDtNasc.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         lblDtNasc.setText("Data Nascimento*");
 
-        fieldSobrenome.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                fieldSobrenomeFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                fieldSobrenomeFocusLost(evt);
-            }
-        });
+        lblUsuario.setText("Usuario*");
+
+        lblSenha.setText("Senha*");
+
+        lblRg.setText("RG");
+
+        lblCargo.setText("Cargo");
+
+        lblCadastroFuncionario.setFont(new java.awt.Font("Arial Black", 1, 21)); // NOI18N
+        lblCadastroFuncionario.setText("Cadastro de Funcionario");
 
         buttonSalvar.setText("Salvar");
         buttonSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -100,8 +102,14 @@ public class IncluirFuncionario extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Arial Black", 1, 21)); // NOI18N
-        jLabel1.setText("Cadastro de Funcionario");
+        fieldSobrenome.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                fieldSobrenomeFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                fieldSobrenomeFocusLost(evt);
+            }
+        });
 
         fieldCpf.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -140,15 +148,7 @@ public class IncluirFuncionario extends javax.swing.JInternalFrame {
             }
         });
 
-        lblUsuario.setText("Usuario*");
-
-        jLabel3.setText("Senha*");
-
-        lblRg.setText("RG");
-
         comboCargo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "Gerente", "Peão" }));
-
-        lblCargo.setText("Cargo");
 
         javax.swing.GroupLayout painelClienteLayout = new javax.swing.GroupLayout(painelCliente);
         painelCliente.setLayout(painelClienteLayout);
@@ -184,7 +184,7 @@ public class IncluirFuncionario extends javax.swing.JInternalFrame {
                                 .addComponent(lblNome)
                                 .addGap(161, 161, 161)
                                 .addComponent(lblSobrenome))
-                            .addComponent(jLabel1)
+                            .addComponent(lblCadastroFuncionario)
                             .addGroup(painelClienteLayout.createSequentialGroup()
                                 .addComponent(lblRg)
                                 .addGap(171, 171, 171)
@@ -201,7 +201,7 @@ public class IncluirFuncionario extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(painelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(painelClienteLayout.createSequentialGroup()
-                                .addComponent(jLabel3)
+                                .addComponent(lblSenha)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(fieldSenha))))
                 .addContainerGap())
@@ -210,7 +210,7 @@ public class IncluirFuncionario extends javax.swing.JInternalFrame {
             painelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelClienteLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(lblCadastroFuncionario)
                 .addGap(18, 18, 18)
                 .addGroup(painelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblNome)
@@ -240,7 +240,7 @@ public class IncluirFuncionario extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(painelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUsuario)
-                    .addComponent(jLabel3))
+                    .addComponent(lblSenha))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(painelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fieldUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -295,6 +295,7 @@ public class IncluirFuncionario extends javax.swing.JInternalFrame {
         funcionario.setCpf(fieldCpf.getText());
         funcionario.setRg(fieldRg.getText().trim().toUpperCase());
         funcionario.setDataNascimento(fieldData.getText());
+        funcionario.setUsuario(fieldUsuario.getText());
 
         String resposta = null;
         if (!modoEdicao) {
@@ -402,13 +403,13 @@ public class IncluirFuncionario extends javax.swing.JInternalFrame {
     private javax.swing.JPasswordField fieldSenha;
     private javax.swing.JTextField fieldSobrenome;
     private javax.swing.JTextField fieldUsuario;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel lblCPF;
+    private javax.swing.JLabel lblCadastroFuncionario;
     private javax.swing.JLabel lblCargo;
     private javax.swing.JLabel lblDtNasc;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblRg;
+    private javax.swing.JLabel lblSenha;
     private javax.swing.JLabel lblSobrenome;
     private javax.swing.JLabel lblUsuario;
     private javax.swing.JPanel painelCliente;

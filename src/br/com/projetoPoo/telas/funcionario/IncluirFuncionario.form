@@ -80,7 +80,7 @@
                                   <EmptySpace min="-2" pref="161" max="-2" attributes="0"/>
                                   <Component id="lblSobrenome" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblCadastroFuncionario" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="lblRg" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="171" max="-2" attributes="0"/>
@@ -102,7 +102,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblSenha" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                               <Component id="fieldSenha" max="32767" attributes="0"/>
@@ -117,7 +117,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblCadastroFuncionario" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="lblNome" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -154,7 +154,7 @@
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblSenha" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -204,11 +204,33 @@
             <Property name="text" type="java.lang.String" value="Data Nascimento*"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="fieldSobrenome">
-          <Events>
-            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="fieldSobrenomeFocusGained"/>
-            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="fieldSobrenomeFocusLost"/>
-          </Events>
+        <Component class="javax.swing.JLabel" name="lblUsuario">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Usuario*"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblSenha">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Senha*"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblRg">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="RG"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblCargo">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Cargo"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblCadastroFuncionario">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Arial Black" size="21" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Cadastro de Funcionario"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="buttonSalvar">
           <Properties>
@@ -226,13 +248,11 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonCancelarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel1">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial Black" size="21" style="1"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Cadastro de Funcionario"/>
-          </Properties>
+        <Component class="javax.swing.JTextField" name="fieldSobrenome">
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="fieldSobrenomeFocusGained"/>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="fieldSobrenomeFocusLost"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="fieldCpf">
           <Events>
@@ -254,26 +274,11 @@
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="fieldNomeFocusLost"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblUsuario">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Usuario*"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JTextField" name="fieldUsuario">
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel3">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Senha*"/>
-          </Properties>
+        <Component class="javax.swing.JTextField" name="fieldRg">
         </Component>
         <Component class="javax.swing.JPasswordField" name="fieldSenha">
-        </Component>
-        <Component class="javax.swing.JLabel" name="lblRg">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="RG"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="fieldRg">
         </Component>
         <Component class="javax.swing.JComboBox" name="comboCargo">
           <Properties>
@@ -288,11 +293,6 @@
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
-        </Component>
-        <Component class="javax.swing.JLabel" name="lblCargo">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Cargo"/>
-          </Properties>
         </Component>
       </SubComponents>
     </Container>
