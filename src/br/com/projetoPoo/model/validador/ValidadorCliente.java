@@ -14,33 +14,26 @@ import br.com.projetoPoo.model.pessoa.cliente.Cliente;
 public class ValidadorCliente {
 
     public static String validadorCliente(Cliente cliente) {
-        String mensagensErro = "Informar Campos Obrigatórios: ";
+        String mensagensErro = "Informar: ";
         boolean valido = true;
         
         if (cliente == null) {
-            mensagensErro += "Não foi informado um Cliente";
+            mensagensErro = "Não foi informado um Cliente";
             return mensagensErro;
         }
-        //VALIDAÇÃO DOS DADOS PESSOAIS DO CLIENTE
+        
         if (cliente.getNome() == null || "".equals(cliente.getNome())) {
             mensagensErro += "\nNome.";
             valido = false;
-        } else if (cliente.getNome().length() > 30) {
-            mensagensErro += "\nNome não pode ter mais de 15 caracteres.";
-            valido = false;
         }
+        
         if (cliente.getSobrenome() == null || "".equals(cliente.getSobrenome())) {
             mensagensErro += "\nSobrenome.";
             valido = false;
-        } else if (cliente.getSobrenome().length() > 50) {
-            mensagensErro += "\nSobrenome não pode ter mais de 50 caracteres.";
-            valido = false;
         }
+        
         if (cliente.getCpf() == null || "".equals(cliente.getCpf())) {
             mensagensErro += "\nCPF.";
-            valido = false;
-        } else if (cliente.getCpf().length() > 14) {
-            mensagensErro += "\nCPF não pode ter mais de 11 caracteres.";
             valido = false;
         } else {
             boolean validoCPF;
@@ -54,7 +47,7 @@ public class ValidadorCliente {
                 valido = false;
             }
         }
-        System.out.println("21");
+        
         if (valido == false) {
             return mensagensErro;
         } else {
