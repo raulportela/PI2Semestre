@@ -367,17 +367,7 @@ public class DaoPessoa {
 
     }
 
-    public String excluir(Cliente cliente, Funcionario funcionario) {
-        boolean isClient = false;
-        Pessoa pessoa = null;
-
-        if (cliente != null) {
-            pessoa = cliente;
-            isClient = true;
-        } else if (funcionario != null) {
-            pessoa = funcionario;
-            isClient = false;
-        }
+    public String excluir(boolean isClient, String cpf) {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -389,8 +379,8 @@ public class DaoPessoa {
                 connection = ConnectionUtils.getConnection();
                 preparedStatement = connection.prepareStatement(sql);
 
-                preparedStatement.setBoolean(1, funcionario.isStatus());
-                preparedStatement.setString(2, funcionario.getCpf());
+                preparedStatement.setBoolean(1, false);
+                preparedStatement.setString(2, cpf);
 
                 preparedStatement.execute();
             } else {
@@ -399,8 +389,8 @@ public class DaoPessoa {
                 connection = ConnectionUtils.getConnection();
                 preparedStatement = connection.prepareStatement(sql);
 
-                preparedStatement.setBoolean(1, funcionario.isStatus());
-                preparedStatement.setString(2, funcionario.getCpf());
+                preparedStatement.setBoolean(1, false);
+                preparedStatement.setString(2, cpf);
 
                 preparedStatement.execute();
             }

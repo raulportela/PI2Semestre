@@ -5,6 +5,8 @@
  */
 package br.com.projetoPoo.telas.funcionario;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Raul de Paula
@@ -246,17 +248,11 @@ public class PesquisarFuncionario extends javax.swing.JInternalFrame {
             final int row = jTableClientesCadsatrados.getSelectedRow();
             String nome = (String) jTableClientesCadsatrados.getValueAt(row, 1);
             int respostaConfirmacao = JOptionPane.showConfirmDialog(rootPane,
-                "Excluir o cliente \"" + nome + "\"?",
+                "Excluir o funcionario \"" + nome + "\"?",
                 "Confirmar exclusão", JOptionPane.YES_NO_OPTION);
             if (respostaConfirmacao == JOptionPane.YES_OPTION) {
                 String cpf = (String) jTableClientesCadsatrados.getValueAt(row, 2);
-                Cliente cliente = null;
-                try {
-                    cliente = ServicoCliente.procurarCliente(cpf);
-                } catch (Exception ex) {
-                    Logger.getLogger(PesquisarCliente.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                String resposta = ServicoCliente.excluirCliente(cliente.getIdCliente());
+                String resposta = ServicoFuncionario.excluir(cpf);
 
                 if (resposta == null) {
                     JOptionPane.showMessageDialog(null, "Cliente excluido com sucesso.");

@@ -300,19 +300,19 @@ public class IncluirFuncionario extends javax.swing.JInternalFrame {
         String resposta = null;
         if (!modoEdicao) {
             try {
-                resposta = ServicoCliente.cadastrarCliente(cliente);
+                resposta = ServicoFuncionario.inserir(funcionario);
             } catch (Exception ex) {
                 Logger.getLogger(IncluirCliente.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
-            resposta = ServicoCliente.atualizarCliente(cliente);
+            resposta = ServicoFuncionario.atualizar(funcionario);
         }
         if (resposta == null) {
             if (!modoEdicao) {
-                JOptionPane.showMessageDialog(null, "Cliente inserido com sucesso");
+                JOptionPane.showMessageDialog(null, "Funcionario inserido com sucesso");
                 this.dispose();
             } else {
-                JOptionPane.showMessageDialog(null, "Cliente alterado com sucesso");
+                JOptionPane.showMessageDialog(null, "Funcionario alterado com sucesso");
                 this.dispose();
             }
 
