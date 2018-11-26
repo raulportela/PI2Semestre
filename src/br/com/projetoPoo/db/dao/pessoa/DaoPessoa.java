@@ -118,7 +118,7 @@ public class DaoPessoa {
 
             result = preparedStatement.executeQuery();
             if (result.next()) {
-                
+
                 Funcionario funcionario = new Funcionario();
                 funcionario.setNome(result.getString("nome"));
                 funcionario.setSobrenome(result.getString("sobrenome"));
@@ -130,7 +130,7 @@ public class DaoPessoa {
                 funcionario.setUsuario(result.getString("nomeUsuario"));
                 funcionario.setSenha(result.getString("senha"));
                 funcionario.setCargo(result.getString("cargo"));
-                
+
                 return funcionario;
             }
             return null;
@@ -158,17 +158,17 @@ public class DaoPessoa {
             preparedStatement.setString(1, cpf);
 
             result = preparedStatement.executeQuery();
+            while (result.next()) {
+                Cliente cliente = new Cliente();
+                cliente.setNome(result.getString("nome"));
+                cliente.setSobrenome(result.getString("sobrenome"));
+                cliente.setCpf(result.getString("cpf"));
+                cliente.setDataNascimento(result.getString("dataNascimento"));
+                cliente.setStatus(result.getBoolean("disponivel"));
+                cliente.setCodCliente(result.getInt("id"));
 
-            Cliente cliente = new Cliente();
-            cliente.setNome(result.getString("nome"));
-            cliente.setSobrenome(result.getString("sobrenome"));
-            cliente.setCpf(result.getString("cpf"));
-            cliente.setDataNascimento(result.getString("dataNascimento"));
-            cliente.setStatus(result.getBoolean("disponivel"));
-            cliente.setCodCliente(result.getInt("id"));
-
-            return cliente;
-
+                return cliente;
+            }
         } catch (SQLException ex) {
             Logger.getLogger(DaoPessoa.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -279,7 +279,7 @@ public class DaoPessoa {
             preparedStatement.setString(3, pessoa.getCpf());
             preparedStatement.setString(4, pessoa.getDataNascimento());
             preparedStatement.setString(5, pessoa.getCpf());
-            
+
             preparedStatement.execute();
             if (!preparedStatement.isClosed()) {
                 preparedStatement.close();

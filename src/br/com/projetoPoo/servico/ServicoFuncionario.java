@@ -31,7 +31,7 @@ public class ServicoFuncionario {
     }
 
     public static  String excluir(String cpf) {
-        DaoPessoa.excluir(false, cpf);
+        DaoPessoa.excluir(true, cpf);
         return null;
     }
 

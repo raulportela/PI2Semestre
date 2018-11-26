@@ -238,12 +238,13 @@ public class IncluirCliente extends javax.swing.JInternalFrame {
         if (modoEdicao && cliente != null) {
             fieldNome.setText(cliente.getNome());
             fieldSobrenome.setText(cliente.getSobrenome());
-            String cpfPontuado = "";
-            cpfPontuado += cliente.getCpf().substring(0, 3) + ".";
-            cpfPontuado += cliente.getCpf().substring(3, 6) + ".";
-            cpfPontuado += cliente.getCpf().substring(6, 9) + "-";
-            cpfPontuado += cliente.getCpf().substring(9, 11);
+            String cpfPontuado = cliente.getCpf();
+//            cpfPontuado += cliente.getCpf().substring(0, 3) + ".";
+//            cpfPontuado += cliente.getCpf().substring(3, 6) + ".";
+//            cpfPontuado += cliente.getCpf().substring(6, 9) + "-";
+//            cpfPontuado += cliente.getCpf().substring(9, 11);
             fieldCpf.setText(cpfPontuado);
+            fieldData.setText(cliente.getDataNascimento());
         }
     }//GEN-LAST:event_formInternalFrameOpened
 
