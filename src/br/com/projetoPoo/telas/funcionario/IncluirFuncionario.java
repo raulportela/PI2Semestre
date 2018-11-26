@@ -54,8 +54,8 @@ public class IncluirFuncionario extends javax.swing.JInternalFrame {
         fieldCpf = new javax.swing.JTextField();
         fieldData = new javax.swing.JTextField();
         fieldNome = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        lblUsuario = new javax.swing.JLabel();
+        fieldUsuario = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         fieldSenha = new javax.swing.JPasswordField();
         lblRg = new javax.swing.JLabel();
@@ -140,7 +140,7 @@ public class IncluirFuncionario extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel2.setText("Usuario*");
+        lblUsuario.setText("Usuario*");
 
         jLabel3.setText("Senha*");
 
@@ -196,8 +196,8 @@ public class IncluirFuncionario extends javax.swing.JInternalFrame {
                         .addComponent(comboCargo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(painelClienteLayout.createSequentialGroup()
                         .addGroup(painelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblUsuario)
+                            .addComponent(fieldUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(painelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(painelClienteLayout.createSequentialGroup()
@@ -239,11 +239,11 @@ public class IncluirFuncionario extends javax.swing.JInternalFrame {
                     .addComponent(comboCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(painelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(lblUsuario)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(painelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fieldUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(fieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(painelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -293,7 +293,7 @@ public class IncluirFuncionario extends javax.swing.JInternalFrame {
         funcionario.setNome(fieldNome.getText().trim().toUpperCase());
         funcionario.setSobrenome(fieldSobrenome.getText().trim().toUpperCase());
         funcionario.setCpf(fieldCpf.getText());
-        funcionario.setRg(fieldRG.getText().trim().toUpperCase());
+        funcionario.setRg(fieldRg.getText().trim().toUpperCase());
         funcionario.setDataNascimento(fieldData.getText());
 
         String resposta = null;
@@ -401,16 +401,16 @@ public class IncluirFuncionario extends javax.swing.JInternalFrame {
     private javax.swing.JTextField fieldRg;
     private javax.swing.JPasswordField fieldSenha;
     private javax.swing.JTextField fieldSobrenome;
+    private javax.swing.JTextField fieldUsuario;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblCPF;
     private javax.swing.JLabel lblCargo;
     private javax.swing.JLabel lblDtNasc;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblRg;
     private javax.swing.JLabel lblSobrenome;
+    private javax.swing.JLabel lblUsuario;
     private javax.swing.JPanel painelCliente;
     // End of variables declaration//GEN-END:variables
 }
